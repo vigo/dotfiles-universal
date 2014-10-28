@@ -1,0 +1,8 @@
+# Check Homebrew?
+if [[ `which brew` ]]; then
+
+    # Load bash_completion if exists...
+    if [ -f $(brew --prefix)/etc/bash_completion ]; then
+        source $(brew --prefix)/etc/bash_completion
+    fi
+fi
