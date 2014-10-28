@@ -1,0 +1,8 @@
+source $DOTFILES_PATH/shell/env
+
+# Are we on Mac ?
+if [[ `uname` == "Darwin" ]]; then
+
+    # sw_vers -productVersion => 10.10
+    source $DOTFILES_PATH/shell/mac_specific
+fi
