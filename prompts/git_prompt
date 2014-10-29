@@ -4,9 +4,9 @@ git_repo_path=`git rev-parse --git-dir 2>/dev/null`
 
 function in_git_repo {
 	if [[ ! -z $git_repo_path && $git_repo_path != "~" && $git_repo_path != "." && $git_repo_path != $HOME/.git ]]; then
-		return 1
+		return 0
 	fi
-	return 0
+	return 1
 }
 
 function git_parse_branch {
@@ -48,13 +48,13 @@ function cwd_untracked {
 	fi
 }
 
-if [[ in_git_repo ]]; then
+if in_git_repo; then
 	branch=$(git_parse_branch)
 	commit_id=`git rev-parse --short HEAD 2>/dev/null`
 	rebasing=$(any_rebasing)
 	any_modified=$(cwd_dirty)
 	any_untracked=$(cwd_untracked)
-	echo "[${branch}@${commit_id}${rebasing}${any_modified}${any_untracked}]"
+	echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}]"
 fi
 
 
