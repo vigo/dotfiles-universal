@@ -1,14 +1,32 @@
 source $DOTFILES_PATH/shell/env
 source $DOTFILES_PATH/shell/alias
 
+# Load private files
+# ----------------------------------------------------------------------------
+# Loads every file under private/ folder!
+if [[ -d $DOTFILES_PATH/private ]]; then
+    if [ "$(ls -A $DOTFILES_PATH/private)" ]; then
+        for file in $DOTFILES_PATH/private/*; do
+            source $file
+        done
+    fi
+fi
+# ----------------------------------------------------------------------------
+
+
 # Are we on Mac ?
+# ----------------------------------------------------------------------------
 if [[ `uname` == "Darwin" ]]; then
     # sw_vers -productVersion => 10.10
     source $DOTFILES_PATH/shell/mac_specific
 fi
+# ----------------------------------------------------------------------------
 
-# rbenv
+
+# Do we have rbenv ?
+# ----------------------------------------------------------------------------
 if [[ -d $HOME/.rbenv ]]; then
     export PATH="$HOME/.rbenv/bin:$PATH"
     eval "$(rbenv init -)"
 fi
+# ----------------------------------------------------------------------------
