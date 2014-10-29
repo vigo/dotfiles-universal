@@ -39,4 +39,8 @@ fi
 # Show/Hide desktop from CMD
 alias desktop_hide="defaults write com.apple.finder CreateDesktop -bool false;killall Finder;"
 alias desktop_show="defaults write com.apple.finder CreateDesktop -bool true;killall Finder;"
+alias shadow_screenshot_disable='defaults write com.apple.screencapture disable-shadow -bool true && killall SystemUIServer'
+alias shadow_screenshot_enable='defaults write com.apple.screencapture disable-shadow -bool false && killall SystemUIServer'
+alias ios_backup_disable="defaults write com.apple.iTunes DeviceBackupsDisabled -bool YES"
+alias ios_backup_enable="defaults delete com.apple.iTunes DeviceBackupsDisabled"
 # ----------------------------------------------------------------------------
