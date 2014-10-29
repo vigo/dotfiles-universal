@@ -52,4 +52,3 @@ __bundle_get_command() {
 
 
 complete -F __bundle -o bashdefault -o default bundle
-# vim: ai ft=sh sw=4 sts=2 et
