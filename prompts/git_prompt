@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
 git_repo_path=`git rev-parse --git-dir 2>/dev/null`
 
 function in_git_repo {
@@ -62,14 +66,16 @@ function commit_position {
 	fi
 }
 
-if in_git_repo; then
-	branch=$(git_parse_branch)
-	commit_id=`git rev-parse --short HEAD 2>/dev/null`
-	rebasing=$(any_rebasing)
-	any_modified=$(cwd_dirty)
-	any_untracked=$(cwd_untracked)
-	ahead_behind=$(commit_position)
-	echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
+if [[ `which git` ]]; then
+	if in_git_repo; then
+		branch=$(git_parse_branch)
+		commit_id=`git rev-parse --short HEAD 2>/dev/null`
+		rebasing=$(any_rebasing)
+		any_modified=$(cwd_dirty)
+		any_untracked=$(cwd_untracked)
+		ahead_behind=$(commit_position)
+		echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
+	fi
 fi
 
 
