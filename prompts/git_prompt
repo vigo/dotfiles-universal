@@ -48,13 +48,28 @@ function cwd_untracked {
 	fi
 }
 
+function commit_position {
+	branch=$(git_parse_branch)
+	current_status=$(eval "git branch -v | grep '* $branch' 2>/dev/null")
+	if [[ $current_status =~ (behind|ahead) ]]; then
+		position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
+		commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
+		if [[ $position == "behind" ]]; then
+			echo " $commit_numbers<-"
+		else
+			echo " $commit_numbers->"
+		fi
+	fi
+}
+
 if in_git_repo; then
 	branch=$(git_parse_branch)
 	commit_id=`git rev-parse --short HEAD 2>/dev/null`
 	rebasing=$(any_rebasing)
 	any_modified=$(cwd_dirty)
 	any_untracked=$(cwd_untracked)
-	echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}]"
+	ahead_behind=$(commit_position)
+	echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
 fi
 
 
