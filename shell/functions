@@ -70,3 +70,15 @@ _server_rb()
 }
 complete -F _server_rb webserver_rb -o nospace
 # ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+# http://stackoverflow.com/a/18637593
+# first call: git-add-push-all, this will generate .all remote, then
+#
+# git push all
+git-add-push-all() {
+    while read -r name url method; do
+        git config --add remote.all.url "$url"
+    done < <(git remote -v | awk '!/^all/ && /push/')
+}
+# ----------------------------------------------------------------------------
