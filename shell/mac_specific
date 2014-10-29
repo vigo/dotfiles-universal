@@ -14,7 +14,7 @@ fi
 # ----------------------------------------------------------------------------
 # Heroku toolbelt?
 if [[ -d /usr/local/heroku/bin ]]; then
-	export PATH="/usr/local/heroku/bin:$PATH"
+    export PATH="/usr/local/heroku/bin:$PATH"
 fi
 # ----------------------------------------------------------------------------
 
@@ -24,7 +24,7 @@ fi
 if [[ `which mate` ]]; then
     export SVN_EDITOR="mate -w"
     export EDITOR="mate -w"
-	alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
+    alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
 fi
 # ----------------------------------------------------------------------------
 
@@ -33,7 +33,7 @@ fi
 # ----------------------------------------------------------------------------
 # coreutils via Homebrew
 if [[ `which gls` ]]; then
-	alias ls="gls -h --color --group-directories-first"
+    alias ls="gls -h --color --group-directories-first"
 fi
 
 # Show/Hide desktop from CMD

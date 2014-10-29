@@ -7,75 +7,75 @@
 git_repo_path=`git rev-parse --git-dir 2>/dev/null`
 
 function in_git_repo {
-	if [[ ! -z $git_repo_path && $git_repo_path != "~" && $git_repo_path != "." && $git_repo_path != $HOME/.git ]]; then
-		return 0
-	fi
-	return 1
+    if [[ ! -z $git_repo_path && $git_repo_path != "~" && $git_repo_path != "." && $git_repo_path != $HOME/.git ]]; then
+        return 0
+    fi
+    return 1
 }
 
 function git_parse_branch {
-	branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
-	if [[ $branch == "HEAD" ]]; then
-		tag=`git describe --tag 2>/dev/null`
-		if [[ -z $tag ]]; then
-			echo "no branch"
-		else
-			echo "${tag}"
-		fi
-	else
-		echo "${branch}"
-	fi
+    branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+    if [[ $branch == "HEAD" ]]; then
+        tag=`git describe --tag 2>/dev/null`
+        if [[ -z $tag ]]; then
+            echo "no branch"
+        else
+            echo "${tag}"
+        fi
+    else
+        echo "${branch}"
+    fi
 }
 
 function any_rebasing {
-	if [[ -f $git_repo_path/BISECT_LOG ]]; then
-		echo "+bisect"
-	elif [[ -f $git_repo_path/MERGE_HEAD ]]; then
-		echo "+merge"
-	elif [[ -f $git_repo_path/rebase || -f $git_repo_path/rebase-apply || -f $git_repo_path/rebase-merge ]]; then
-		echo "+rebase"
-	fi
+    if [[ -f $git_repo_path/BISECT_LOG ]]; then
+        echo "+bisect"
+    elif [[ -f $git_repo_path/MERGE_HEAD ]]; then
+        echo "+merge"
+    elif [[ -f $git_repo_path/rebase || -f $git_repo_path/rebase-apply || -f $git_repo_path/rebase-merge ]]; then
+        echo "+rebase"
+    fi
 }
 
 function cwd_dirty {
-	modified_files=`git ls-files -m 2>/dev/null`
-	modified_files_count=`echo $modified_files | awk '{print NF}'`
-	if [[ $modified_files_count > 0 ]]; then
-		echo " (✗:${modified_files_count})"
-	fi
+    modified_files=`git ls-files -m 2>/dev/null`
+    modified_files_count=`echo $modified_files | awk '{print NF}'`
+    if [[ $modified_files_count > 0 ]]; then
+        echo " (✗:${modified_files_count})"
+    fi
 }
 
 function cwd_untracked {
-	files_not_under_revision_control_count=`git status -s 2>/dev/null | grep '??' | wc -l | tr -d " "`
-	if [[ $files_not_under_revision_control_count > 0 ]]; then
-		echo " (+:${files_not_under_revision_control_count})"
-	fi
+    files_not_under_revision_control_count=`git status -s 2>/dev/null | grep '??' | wc -l | tr -d " "`
+    if [[ $files_not_under_revision_control_count > 0 ]]; then
+        echo " (+:${files_not_under_revision_control_count})"
+    fi
 }
 
 function commit_position {
-	branch=$(git_parse_branch)
-	current_status=$(eval "git branch -v | grep '* $branch' 2>/dev/null")
-	if [[ $current_status =~ (behind|ahead) ]]; then
-		position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
-		commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
-		if [[ $position == "behind" ]]; then
-			echo " $commit_numbers<-"
-		else
-			echo " $commit_numbers->"
-		fi
-	fi
+    branch=$(git_parse_branch)
+    current_status=$(eval "git branch -v | grep '* $branch' 2>/dev/null")
+    if [[ $current_status =~ (behind|ahead) ]]; then
+        position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
+        commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
+        if [[ $position == "behind" ]]; then
+            echo " $commit_numbers<-"
+        else
+            echo " $commit_numbers->"
+        fi
+    fi
 }
 
 if [[ `which git` ]]; then
-	if in_git_repo; then
-		branch=$(git_parse_branch)
-		commit_id=`git rev-parse --short HEAD 2>/dev/null`
-		rebasing=$(any_rebasing)
-		any_modified=$(cwd_dirty)
-		any_untracked=$(cwd_untracked)
-		ahead_behind=$(commit_position)
-		echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
-	fi
+    if in_git_repo; then
+        branch=$(git_parse_branch)
+        commit_id=`git rev-parse --short HEAD 2>/dev/null`
+        rebasing=$(any_rebasing)
+        any_modified=$(cwd_dirty)
+        any_untracked=$(cwd_untracked)
+        ahead_behind=$(commit_position)
+        echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
+    fi
 fi
 
 

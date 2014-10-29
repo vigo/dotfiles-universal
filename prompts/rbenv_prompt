@@ -1,15 +1,8 @@
 #!/usr/bin/env bash
 
 if [[ `which rbenv` ]]; then
-	rbenv_version=`rbenv version-name`
-	if [[ $rbenv_version != "system" ]]; then
-		echo "[${rbenv_version}]"
-	fi
+    rbenv_version=`rbenv version-name`
+    if [[ $rbenv_version != "system" && ! -z $rbenv_version ]]; then
+        echo "[${rbenv_version}]"
+    fi
 fi
-
-# unless `which rbenv`.strip.empty?
-#   rbenv_version = `rbenv version-name`.strip
-#   unless rbenv_version == "system"
-#     puts "#{$COLOR_BLUE}[#{rbenv_version}]#{$COLOR_RESET}"
-#   end
-# end

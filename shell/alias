@@ -3,7 +3,7 @@ alias la='ls -A'
 alias l='ls -CF'
 
 if [[ `uname` == "Linux" ]]; then
-	alias ls='ls -h --color --group-directories-first'
+    alias ls='ls -h --color --group-directories-first'
 fi
 
 alias grep="grep -i --color=auto"
