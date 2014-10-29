@@ -41,14 +41,14 @@ function cwd_dirty {
     modified_files=`git ls-files -m 2>/dev/null`
     modified_files_count=`echo $modified_files | awk '{print NF}'`
     if [[ $modified_files_count > 0 ]]; then
-        echo " (✗:${modified_files_count})"
+        echo -e " (\xE2\x9c\x97 ${modified_files_count})"
     fi
 }
 
 function cwd_untracked {
     files_not_under_revision_control_count=`git status -s 2>/dev/null | grep '??' | wc -l | tr -d " "`
     if [[ $files_not_under_revision_control_count > 0 ]]; then
-        echo " (+:${files_not_under_revision_control_count})"
+        echo -e " (\xE2\x98\x90 ${files_not_under_revision_control_count})"
     fi
 }
 
@@ -59,9 +59,9 @@ function commit_position {
         position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
         commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
         if [[ $position == "behind" ]]; then
-            echo " $commit_numbers<-"
+            echo -e " $commit_numbers\xE2\x86\x90"
         else
-            echo " $commit_numbers->"
+            echo -e " $commit_numbers\xE2\x86\x92"
         fi
     fi
 }
