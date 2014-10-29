@@ -30,3 +30,18 @@ if [[ -d $HOME/.rbenv ]]; then
     eval "$(rbenv init -)"
 fi
 # ----------------------------------------------------------------------------
+
+
+# Bash Completions
+# ----------------------------------------------------------------------------
+
+# Load completion files
+for completion_file in $DOTFILES_PATH/completions/*; do
+    source $completion_file
+done
+
+# Do we have pip?
+if [[ `which pip` ]]; then
+    eval "`pip completion --bash`"
+fi
+# ----------------------------------------------------------------------------
