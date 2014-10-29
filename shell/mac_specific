@@ -1,4 +1,5 @@
 # Check Homebrew?
+# ----------------------------------------------------------------------------
 if [[ `which brew` ]]; then
 
     # Load bash_completion if exists...
@@ -6,3 +7,36 @@ if [[ `which brew` ]]; then
         source $(brew --prefix)/etc/bash_completion
     fi
 fi
+# ----------------------------------------------------------------------------
+
+
+# Mac Specific env
+# ----------------------------------------------------------------------------
+# Heroku toolbelt?
+if [[ -d /usr/local/heroku/bin ]]; then
+	export PATH="/usr/local/heroku/bin:$PATH"
+fi
+# ----------------------------------------------------------------------------
+
+
+# TextMate ?
+# ----------------------------------------------------------------------------
+if [[ `which mate` ]]; then
+    export SVN_EDITOR="mate -w"
+    export EDITOR="mate -w"
+	alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
+fi
+# ----------------------------------------------------------------------------
+
+
+# Mac Specific aliases
+# ----------------------------------------------------------------------------
+# coreutils via Homebrew
+if [[ `which gls` ]]; then
+	alias ls="gls -h --color --group-directories-first"
+fi
+
+# Show/Hide desktop from CMD
+alias desktop_hide="defaults write com.apple.finder CreateDesktop -bool false;killall Finder;"
+alias desktop_show="defaults write com.apple.finder CreateDesktop -bool true;killall Finder;"
+# ----------------------------------------------------------------------------

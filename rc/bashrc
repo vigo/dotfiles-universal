@@ -1,8 +1,14 @@
 source $DOTFILES_PATH/shell/env
+source $DOTFILES_PATH/shell/alias
 
 # Are we on Mac ?
 if [[ `uname` == "Darwin" ]]; then
-
     # sw_vers -productVersion => 10.10
     source $DOTFILES_PATH/shell/mac_specific
+fi
+
+# rbenv
+if [[ -d $HOME/.rbenv ]]; then
+    export PATH="$HOME/.rbenv/bin:$PATH"
+    eval "$(rbenv init -)"
 fi

@@ -1,2 +1,23 @@
 export LANG="en_US.UTF-8"
 
+if [[ -d /usr/local/sbin ]]; then
+	export PATH="/usr/local/sbin":$PATH
+fi
+
+export LESS="-ir --prompt=?f%f %lb %L - %db/%D [%bb / %B bytes]"
+export MANPAGER="less -X";
+
+# History --------------------------------------------------------------------
+shopt -s histappend
+export HISTIGNORE="ls:ll:cd:pwd"
+export HISTFILESIZE=30000
+export HISTSIZE=30000
+export HISTCONTROL=ignoredups:erasedups
+export HISTTIMEFORMAT="[$(tput setaf 2)%F %T$(tput sgr0)]: "
+# History --------------------------------------------------------------------
+
+# Prompts
+
+PROMPT_GIT=$DOTFILES_PATH/prompts/git_prompt
+
+export PS1="\u@\H\n\w\n\$(\$PROMPT_GIT)\n$ "
