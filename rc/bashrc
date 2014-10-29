@@ -45,3 +45,6 @@ if [[ `which pip` ]]; then
     eval "`pip completion --bash`"
 fi
 # ----------------------------------------------------------------------------
+
+# Load Functions
+source $DOTFILES_PATH/shell/functions
