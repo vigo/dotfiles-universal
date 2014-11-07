@@ -1,6 +1,6 @@
 # Dotfiles Final Whistle
 
-Supports OSX and Linux.
+Supports OSX and Ubuntu Linux.
 
 # Requirements
 
