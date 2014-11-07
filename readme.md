@@ -6,3 +6,6 @@ Supports OSX and Linux.
 
 OSX: Homebrew would be kool!
 
+# Installation
+
+wip...
