@@ -3,9 +3,11 @@
 Supports OSX and Ubuntu Linux.
 
 # Requirements
+### OSX
+[Homebrew][01] would be kool!
 
-OSX: [Homebrew][01] would be kool!
-Ubuntu: `git` required. `sudo aptitude install git`
+### Ubuntu:
+`git` required. `sudo aptitude install git`
 
 # Installation
 
