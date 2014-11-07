@@ -45,4 +45,8 @@ env, aliases etc...
 
 **BOTH**: Rbenv + Git prompt
 
+### Screenshots
+
+![Terminal Screen](http://i.imgur.com/dYNqSKj.png)
+
 [01]: http://brew.sh
