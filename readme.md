@@ -18,6 +18,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/profile ~/.profile
     ln -s $HOME/Dotfiles/rc/bashrc ~/.bashrc
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
+    ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you installed ack?
 
 ## OSX Special
 
@@ -45,8 +46,15 @@ env, aliases etc...
 
 **BOTH**: Rbenv + Git prompt
 
-### Screenshots
+## Screenshots
 
 ![Terminal Screen](http://i.imgur.com/dYNqSKj.png)
+
+## History
+
+**2014-11-09**
+
+* `ackrc` added
+
 
 [01]: http://brew.sh
