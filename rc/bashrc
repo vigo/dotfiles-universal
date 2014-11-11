@@ -1,3 +1,6 @@
+# non interactive shell
+[ -z "$PS1" ] && return
+
 export DOTFILES_PATH="$HOME/Dotfiles"
 
 source $DOTFILES_PATH/shell/env
