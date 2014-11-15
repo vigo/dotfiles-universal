@@ -74,7 +74,11 @@ if [[ `which git` ]]; then
         any_modified=$(cwd_dirty)
         any_untracked=$(cwd_untracked)
         ahead_behind=$(commit_position)
-        echo "[${branch} @ ${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
+        
+        branch_color="$(tput setaf 2)${branch}$(tput sgr0)"
+        at_color="$(tput setaf 7)@$(tput sgr0)"
+        
+        echo "[${branch_color}${at_color}${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
     fi
 fi
 
