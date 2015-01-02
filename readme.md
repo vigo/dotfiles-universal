@@ -2,14 +2,16 @@
 
 Supports OSX and Ubuntu Linux.
 
-# Requirements
+## Requirements
+
 ### OSX
+
 [Homebrew][01] would be kool!
 
 ### Ubuntu:
-`git` required. `sudo aptitude install git`
+`git` required. `sudo aptitude install git` can help you out...
 
-# Installation
+## Installation
 
 You need to clone the repo:
 
@@ -20,7 +22,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
     ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you installed ack?
 
-## OSX Special
+### OSX Special
 
 If you like to tweak Yosemite, try:
 
@@ -40,7 +42,7 @@ Need to restart shell / logout - login or `exec $SHELL`.
 Put all of your **private** stuff under `Private/` folder! Custom functions,
 env, aliases etc...
 
-# Prompt Shell Features
+## Prompt Shell Features
 
 **OSX**: Free Memory, Battery status, IP List
 
