@@ -56,13 +56,23 @@ function commit_position {
     branch=$(git_parse_branch)
     current_status=$(eval "git branch -v | grep '* $branch' 2>/dev/null")
     if [[ $current_status =~ (behind|ahead) ]]; then
-        position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
-        commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
-        if [[ $position == "behind" ]]; then
-            echo -e " $commit_numbers\xE2\x86\x90"
-        else
-            echo -e " $commit_numbers\xE2\x86\x92"
+        output=""
+        ahead_ptrn="ahead ([0-9]+)"
+        behind_ptrn="behind ([0-9]+)"
+        if [[ "${current_status}" =~ $ahead_ptrn ]]; then
+            output=" ${output}\xE2\x86\x92${BASH_REMATCH[1]}"
         fi
+        if [[ "${current_status}" =~ $behind_ptrn ]]; then
+            output="${output} ${BASH_REMATCH[1]}\xE2\x86\x90"
+        fi
+        echo -e "${output}"
+        # position=`echo "$current_status" | awk '{sub(/\[/, ""); print $4}' 2>/dev/null`
+        # commit_numbers=`echo "$current_status" | awk '{sub(/\]/, ""); print $5}' 2>/dev/null`
+        # if [[ $position == "behind" ]]; then
+        #     echo -e " $commit_numbers\xE2\x86\x90"
+        # else
+        #     echo -e " $commit_numbers\xE2\x86\x92"
+        # fi
     fi
 }
 
