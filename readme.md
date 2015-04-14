@@ -54,6 +54,11 @@ env, aliases etc...
 
 ## History
 
+**2015-04-14**
+
+* `nanorc` added. You need to install **nano** from [Homebrew][01]
+`brew install nano` and link `ln -s ~/Dotfiles/rc/nanorc ~/.nanorc`
+
 **2014-11-09**
 
 * `ackrc` added
