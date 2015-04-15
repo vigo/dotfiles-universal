@@ -8,12 +8,12 @@ set tabstospaces
 set tabsize 4
 # set undo
 set nowrap
-include "/usr/local/Cellar/nano/2.2.6/share/nano/awk.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/css.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/html.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/nanorc.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/patch.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/python.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/ruby.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/sh.nanorc"
-include "/usr/local/Cellar/nano/2.2.6/share/nano/xml.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/awk.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/css.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/html.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/nanorc.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/patch.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/python.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/ruby.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/sh.nanorc"
+include "/usr/local/Cellar/nano/2.4.0/share/nano/xml.nanorc"
