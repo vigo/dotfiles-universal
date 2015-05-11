@@ -20,7 +20,8 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/profile ~/.profile
     ln -s $HOME/Dotfiles/rc/bashrc ~/.bashrc
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
-    ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you installed ack?
+    ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
+    ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
 
 ### OSX Special
 
