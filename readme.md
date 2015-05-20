@@ -22,6 +22,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
     ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
     ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
+    ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
 
 ### OSX Special
 
@@ -54,6 +55,10 @@ env, aliases etc...
 ![Terminal Screen](http://i.imgur.com/dYNqSKj.png)
 
 ## History
+
+**2015-05-20**
+
+* `pryirc` added. If you have `awesome_print`, pry will use it automatically 
 
 **2015-04-14**
 
