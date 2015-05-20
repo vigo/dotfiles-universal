@@ -1,6 +1,6 @@
 Pry.prompt = [
-  proc { |obj, nest_level, _| "[#{RUBY_VERSION}] (#{obj}):#{nest_level} > " },
-  proc { |obj, nest_level, _| "[#{RUBY_VERSION}] (#{obj}):#{nest_level} * " }
+  proc { |obj, nest_level, _| "[\e[0;32m#{RUBY_VERSION}\e[0m] (\e[0;33m#{obj}\e[0m): #{nest_level} > " },
+  proc { |obj, nest_level, _| "[\e[0;32m#{RUBY_VERSION}\e[0m] (\e[0;33m#{obj}\e[0m): #{nest_level} * " }
 ]
 
 Pry.config.ls.separator = "\n"

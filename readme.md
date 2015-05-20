@@ -59,6 +59,7 @@ env, aliases etc...
 **2015-05-20**
 
 * `pryirc` added. If you have `awesome_print`, pry will use it automatically 
+* pry-prompt colorized.
 
 **2015-04-14**
 
