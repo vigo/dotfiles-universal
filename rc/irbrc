@@ -4,4 +4,7 @@ require 'irb/completion'
 IRB.conf[:USE_READLINE] = true
 IRB.conf[:AUTO_INDENT] = true
 
-Rails.application.eager_load! if Rails
+begin
+  Rails.application.eager_load! if Rails
+rescue
+end

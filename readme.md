@@ -56,6 +56,10 @@ env, aliases etc...
 
 ## History
 
+**2015-05-27**
+
+* `pryirc` bug fixed.
+
 **2015-05-20**
 
 * `pryirc` added. If you have `awesome_print`, pry will use it automatically 
