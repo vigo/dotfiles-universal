@@ -23,6 +23,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
     ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
     ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
+    ln -s $HOME/Dotfiles/rc/nano ~/.nanorc # if you’ve installed nano ?
 
 ### OSX Special
 
@@ -55,6 +56,10 @@ env, aliases etc...
 ![Terminal Screen](http://i.imgur.com/dYNqSKj.png)
 
 ## History
+
+**2015-05-28**
+
+* **Nano** version **2.4.1** support for `nanorc` (*brew*)
 
 **2015-05-27**
 
