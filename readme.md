@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-06-02**
+
+* `virtualenvwrapper.sh` added for initializer.
+
 **2015-05-28**
 
 * **Nano** version **2.4.1** support for `nanorc` (*brew*)

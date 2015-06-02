@@ -48,6 +48,12 @@ fi
 # ----------------------------------------------------------------------------
 
 
+# Do we have VirtualEnv Wrapper...
+if [[ `which virtualenvwrapper.sh` ]]; then
+    source `which virtualenvwrapper.sh`
+fi
+
+
 # Bash Completions
 # ----------------------------------------------------------------------------
 
