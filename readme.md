@@ -59,6 +59,7 @@ env, aliases etc...
 
 **2015-06-03**
 
+* `$VIRTUAL_ENV` prompt added. Shows Python and Django version
 * Bash completion for Djano `django-admin.py` and `manage.py`
 
 **2015-06-02**
