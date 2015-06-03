@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-06-03**
+
+* Bash completion for Djano `django-admin.py` and `manage.py`
+
 **2015-06-02**
 
 * `virtualenvwrapper.sh` added for initializer.
