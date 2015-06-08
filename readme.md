@@ -23,7 +23,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
     ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
     ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
-    ln -s $HOME/Dotfiles/rc/nano ~/.nanorc # if you’ve installed nano ?
+    ln -s $HOME/Dotfiles/rc/nano ~/.nanorc # if you’ve installed nano ? v2.4.1
 
 ### OSX Special
 
