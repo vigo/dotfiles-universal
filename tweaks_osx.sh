@@ -133,3 +133,5 @@ defaults write com.apple.TextEdit PlainTextEncodingForWrite -int 4
 
 # disable the animations for opening Quick Look windows
 defaults write -g QLPanelAnimationDuration -float 0
+
+defaults write com.apple.NetworkBrowser BrowseAllInterfaces 1
