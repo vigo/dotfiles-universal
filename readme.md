@@ -53,9 +53,13 @@ env, aliases etc...
 
 ## Screenshots
 
-![Terminal Screen](http://i.imgur.com/dYNqSKj.png)
+![Terminal Screen](http://i.imgur.com/kXegjAf.png)
 
 ## History
+
+**2015-06-10**
+
+* Screen shot updated
 
 **2015-06-03**
 
