@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-06-12**
+
+* MySQL server status added to prompt. (OSX + Homebrew only)
+
 **2015-06-10**
 
 * Screen shot updated
