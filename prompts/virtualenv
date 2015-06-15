@@ -1,5 +1,5 @@
 if [[ $VIRTUAL_ENV ]]; then
-    django_version=$(python -c $'try:\n    import django;\n    print "Django:%s" % django.get_version();\nexcept ImportError:\n    pass;\n')
+    django_version=$(python -c $'try:\n    import django;\n    print ", Django:%s" % django.get_version();\nexcept ImportError:\n    pass;\n')
     python_version=$(python -c $'import sys;print "Python: %s.%s.%s" % (sys.version_info.major, sys.version_info.minor, sys.version_info.micro);')
-    echo "[${python_version}, ${django_version}]"
+    echo "[${python_version}${django_version}]"
 fi
