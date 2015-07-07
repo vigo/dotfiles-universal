@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-07-07**
+
+* Nano 2.4.2 support :)
+
 **2015-06-12**
 
 * MySQL server status added to prompt. (OSX + Homebrew only)
