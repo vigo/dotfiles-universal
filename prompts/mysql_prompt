@@ -6,7 +6,7 @@ set -e
 if [[ `uname` == "Darwin" ]]; then
     # requires mysql which is installed from brew
     # brew install mysql :)
-    if [[ `mysql.server` ]]; then
+    if [[ `which mysql.server` ]]; then
         # SUCCESS! MySQL running (52953)
         mysql_status=`mysql.server status`
         regex="running \(([0-9]+)"
