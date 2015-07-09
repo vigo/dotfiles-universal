@@ -31,10 +31,19 @@ fi
 
 # Are we on Ubuntu
 # ----------------------------------------------------------------------------
-if [[ `which lsb_release` ]]; then
+if [[ -f /usr/bin/lsb_release ]]; then
     if [[ `lsb_release -i | awk '{print $3}'` == "Ubuntu" ]]; then
         source $DOTFILES_PATH/shell/ubuntu_specific
     fi
+fi
+# ----------------------------------------------------------------------------
+
+
+# Are we on Gentoo
+# ----------------------------------------------------------------------------
+if [[ `uname -r | awk -F - '{print $2}'` == "gentoo" ]]; then
+    export WE_ARE_ON_GENTOO="YES"
+    source $DOTFILES_PATH/shell/gentoo_specific
 fi
 # ----------------------------------------------------------------------------
 
@@ -49,9 +58,13 @@ fi
 
 
 # Do we have VirtualEnv Wrapper...
-if [[ `which virtualenvwrapper.sh` ]]; then
-    source `which virtualenvwrapper.sh`
+# ----------------------------------------------------------------------------
+if [[ -z "$WE_ARE_ON_GENTOO" ]]; then
+    if [[ `which virtualenvwrapper.sh` ]]; then
+        source `which virtualenvwrapper.sh`
+    fi
 fi
+# ----------------------------------------------------------------------------
 
 
 # Bash Completions
