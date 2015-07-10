@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-07-10**
+
+* Docker IP support for Prompt
+
 **2015-07-07**
 
 * Nano 2.4.2 support :)
