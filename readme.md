@@ -57,6 +57,10 @@ env, aliases etc...
 
 ## History
 
+**2015-07-11**
+
+* `what_is_my_public_ip` alias added for getting public/real ip :)
+
 **2015-07-10**
 
 * Docker IP support for Prompt
