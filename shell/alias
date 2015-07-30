@@ -13,3 +13,4 @@ alias more="more -r"
 alias rm="rm -i"
 
 alias what_is_my_public_ip="dig +short myip.opendns.com @resolver1.opendns.com"
+alias what_is_my_real_ip="curl ifconfig.co"
