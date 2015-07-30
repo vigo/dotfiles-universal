@@ -17,6 +17,11 @@ You need to clone the repo:
 
     cd $HOME
     git clone https://github.com/vigo/dotfiles-universal.git Dotfiles
+    
+    # backup existing settings
+    mv .bashrc bashrc_old
+    mv .profile profile_old
+    
     ln -s $HOME/Dotfiles/profile ~/.profile
     ln -s $HOME/Dotfiles/rc/bashrc ~/.bashrc
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
