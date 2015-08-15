@@ -62,6 +62,10 @@ env, aliases etc...
 
 ## History
 
+**2015-08-15**
+
+* `.gitignore` fixed
+
 **2015-07-30**
 
 * `what_is_my_real_ip` alias added, uses: `ifconfig.co`
