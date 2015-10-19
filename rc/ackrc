@@ -30,3 +30,6 @@
 --nobin
 --notmstuff
 --noxcode
+
+--type-set=fuck=.appcache,.svg
+--nofuck
