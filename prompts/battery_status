@@ -4,6 +4,7 @@
 # feel free to add/change or implement more kool features
 # @vigobronx
 
+# emoji battery: \xF0\x9F\x94\x8B
 
 if [[ `uname` == "Darwin" ]]; then
     power_data=$(pmset -g batt)
@@ -16,9 +17,6 @@ if [[ `uname` == "Darwin" ]]; then
         else
             result=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
         fi
+        printf "[\xE2\x96\xB9\xE2\x96\xB8%s] " "${result}"
     fi
-    printf "[%s]" "${result}"
 fi
-
-
-
