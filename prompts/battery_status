@@ -1,0 +1,24 @@
+#!/usr/bin/env bash
+
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
+
+if [[ `uname` == "Darwin" ]]; then
+    power_data=$(pmset -g batt)
+    result=""
+    if [[ ! $power_data == *"AC Power"* ]]; then
+        battery_percent=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f1 -d';')
+        battery_time_remaining=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';')
+        if [[ $battery_time_remaining == *"no estimate"* ]]; then
+            result="??"
+        else
+            result=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
+        fi
+    fi
+    printf "[%s]" "${result}"
+fi
+
+
+
