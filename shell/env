@@ -23,7 +23,7 @@ PROMPT_VIRTUALENV=$DOTFILES_PATH/prompts/virtualenv
 
 # mac only
 PROMPT_FREE_MEMORY=$DOTFILES_PATH/prompts/free_memory.rb
-PROMPT_LIST_IPS=$DOTFILES_PATH/prompts/list_ips.rb
+PROMPT_LIST_IPS=$DOTFILES_PATH/prompts/list_ips
 PROMPT_BATTERY_STATUS=$DOTFILES_PATH/prompts/battery_status
 PROMPT_MYSQL_STATUS=$DOTFILES_PATH/prompts/mysql_prompt
 

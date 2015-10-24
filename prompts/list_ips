@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
+out=()
+for iface in $(ifconfig -lu); do
+    ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
+    if [[ $ip_address && ! $iface == "lo0" ]]; then
+        iface_and_ip=$(printf ",%s: %s" "${iface}" "${ip_address}")
+        out+=("${iface_and_ip}")
+    fi
+done
+echo ${out:1}
