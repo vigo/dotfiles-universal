@@ -17,6 +17,6 @@ if [[ `uname` == "Darwin" ]]; then
         else
             result=$(pmset -g batt | egrep "([0-9]+\%).*" -o --colour=auto | cut -f3 -d';' | cut -f2 -d' ')
         fi
-        printf "[\xE2\x96\xB9\xE2\x96\xB8%s] " "${result}"
+        printf "[\xE2\x8C\xA7 %s]" "${result}"
     fi
 fi

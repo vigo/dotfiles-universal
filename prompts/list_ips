@@ -8,8 +8,13 @@ out=()
 for iface in $(ifconfig -lu); do
     ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
     if [[ $ip_address && ! $iface == "lo0" ]]; then
-        iface_and_ip=$(printf ",%s: %s" "${iface}" "${ip_address}")
+        iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
         out+=("${iface_and_ip}")
     fi
 done
-echo ${out:1}
+if [[ $out ]]; then
+    printf "[%s]" "${out:1}"
+else
+    printf "[\xE2\x8C\x81]"
+fi
+
