@@ -19,7 +19,11 @@ esac
 
 for iface in $iface_data; do
     if [[ $we_are_on_linux == "yes" ]]; then
-        ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet addr:[[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ' | cut -f2 -d ':')
+        if [[ $WE_ARE_ON_GENTOO ]]; then
+            ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
+        else
+            ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet addr:[[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ' | cut -f2 -d ':')
+        fi
     else
         ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
     fi
