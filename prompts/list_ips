@@ -5,13 +5,24 @@
 # @vigobronx
 
 out=()
+we_are_on_linux=""
 case $(uname) in
     "Darwin" )
         iface_data=$(ifconfig -lu);;
+    "Linux" )
+        we_are_on_linux="yes"
+        ifaces=$(ifconfig -s | awk '{print $1}' | xargs)
+        ARR=($ifaces)
+        ARR=${ARR[@]:1}
+        iface_data=($ARR);;
 esac
 
 for iface in $iface_data; do
-    ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
+    if [[ $we_are_on_linux == "yes" ]]; then
+        ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet addr:[[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ' | cut -f2 -d ':')
+    else
+        ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
+    fi
     if [[ $ip_address && ! $iface == "lo0" ]]; then
         iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
         out+="${iface_and_ip}"
