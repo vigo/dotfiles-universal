@@ -5,11 +5,16 @@
 # @vigobronx
 
 out=()
-for iface in $(ifconfig -lu); do
+case $(uname) in
+    "Darwin" )
+        iface_data=$(ifconfig -lu);;
+esac
+
+for iface in $iface_data; do
     ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
     if [[ $ip_address && ! $iface == "lo0" ]]; then
         iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
-        out+=("${iface_and_ip}")
+        out+="${iface_and_ip}"
     fi
 done
 if [[ $out ]]; then
