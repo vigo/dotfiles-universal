@@ -4,37 +4,28 @@
 # feel free to add/change or implement more kool features
 # @vigobronx
 
-out=()
-we_are_on_linux=""
+output=()
 case $(uname) in
     "Darwin" )
-        iface_data=$(ifconfig -lu);;
+        interface_list=$(ifconfig -lu)
+        for iface in $interface_list; do
+            ip_address=$(ipconfig getifaddr $iface)
+            if [[ $ip_address ]]; then
+                iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
+                output+="${iface_and_ip}"
+            fi
+        done
+        ;;
     "Linux" )
-        we_are_on_linux="yes"
-        ifaces=$(ifconfig -s | awk '{print $1}' | xargs)
-        ARR=($ifaces)
-        ARR=${ARR[@]:1}
-        iface_data=($ARR);;
+        if [[ ! $WE_ARE_ON_GENTOO ]]; then
+            ip_address=$(hostname -I | cut -f1 -d' ')
+            output=(",${ip_address}")
+        fi
+        ;;
 esac
 
-for iface in $iface_data; do
-    if [[ $we_are_on_linux == "yes" ]]; then
-        if [[ $WE_ARE_ON_GENTOO ]]; then
-            ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
-        else
-            ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet addr:[[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ' | cut -f2 -d ':')
-        fi
-    else
-        ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [[:digit:]]*.[[:digit:]]*.[[:digit:]]*.[[:digit:]]*' | cut -f2 -d' ')
-    fi
-    if [[ $ip_address && ! $iface == "lo0" ]]; then
-        iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
-        out+="${iface_and_ip}"
-    fi
-done
-if [[ $out ]]; then
-    printf "[%s]" "${out:1}"
+if [[ $output ]]; then
+    printf "[%s]" "${output:1}"
 else
     printf "[\xE2\x8C\x81]"
 fi
-
