@@ -21,8 +21,8 @@ fi
 # TextMate ?
 # ----------------------------------------------------------------------------
 if [[ `which mate` ]]; then
-    export SVN_EDITOR="mate -w"
-    export EDITOR="mate -w"
+    # export SVN_EDITOR="mate -w"
+    # export EDITOR="mate -w"
     alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
 fi
 # ----------------------------------------------------------------------------
