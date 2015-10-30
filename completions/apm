@@ -21,9 +21,15 @@ __apm(){
         if [[ -z $apm_command ]]; then
             options="$options --version --help"
         fi
+        if [[ $apm_command && $apm_command = publish ]]; then
+            options="--tag --rename"
+        fi
     else
         if [[ -z $apm_command || $apm_command = help ]]; then
             options="help clean config dedupe deinstall delete dev develop docs erase featured home init install link linked links list ln lns login ls open outdated publish rebuild rebuild-module-cache remove rm search show star starred stars test uninstall unlink unpublish unstar update upgrade view"
+        fi
+        if [[ $apm_command && $apm_command = publish ]]; then
+            options="major minor patch build"
         fi
     fi
     COMPREPLY=($(compgen -W "$options" -- "$cur"))
@@ -32,7 +38,6 @@ __apm_get_command() {
     local i
     for ((i=1; i < $COMP_CWORD; ++i)); do
         local arg=${COMP_WORDS[$i]}
-
         case $arg in
         [^-]*)
             apm_command=$arg
@@ -42,6 +47,9 @@ __apm_get_command() {
             return;;
         --help)
             apm_command=help
+            return;;
+        publish)
+            apm_command=publish
             return;;
         esac
     done
