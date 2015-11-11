@@ -8,21 +8,20 @@ output=()
 case $(uname) in
     "Darwin" )
         interface_list=$(ifconfig -lu)
-        for iface in $interface_list; do
-            ip_address=$(ipconfig getifaddr $iface)
-            if [[ $ip_address ]]; then
-                iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
-                output+="${iface_and_ip}"
-            fi
-        done
-        ;;
+    ;;
     "Linux" )
-        if [[ ! $WE_ARE_ON_GENTOO ]]; then
-            ip_address=$(hostname -I | cut -f1 -d' ')
-            output=(",${ip_address}")
-        fi
-        ;;
+        lines=$(ifconfig -s | wc -l)
+        interface_list=$(ifconfig -s | tail -n $(( $lines-1 )) | cut -f1 -d' ' | xargs)
+    ;;
 esac
+
+for iface in $interface_list; do
+    ip_address=$(ifconfig $iface | grep --colour=never -oe 'inet [0-9.]\+' | cut -f2 -d' ')
+    if [[ $ip_address && $ip_address != "127.0.0.1" ]]; then
+        iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
+        output+="${iface_and_ip}"
+    fi
+done
 
 if [[ $output ]]; then
     printf "[%s]" "${output:1}"
