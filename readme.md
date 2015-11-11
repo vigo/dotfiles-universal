@@ -62,6 +62,10 @@ env, aliases etc...
 
 ## History
 
+**2015-11-11**
+
+* `lock_screen` alias for OSX Users. Locks OSX via command line!
+
 **2015-09-25**
 
 * `vimrc` removed

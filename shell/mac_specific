@@ -43,4 +43,5 @@ alias shadow_screenshot_enable='defaults write com.apple.screencapture disable-s
 alias ios_backup_disable="defaults write com.apple.iTunes DeviceBackupsDisabled -bool YES"
 alias ios_backup_enable="defaults delete com.apple.iTunes DeviceBackupsDisabled"
 alias ds_store_clear="find . -name '\.DS_Store' -print -delete"
+alias lock_screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # ----------------------------------------------------------------------------
