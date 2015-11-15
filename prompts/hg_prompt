@@ -1,0 +1,50 @@
+#!/usr/bin/env bash
+
+# Created by Uğur "vigo" Özyılmazel,
+# feel free to add/change or implement more kool features
+# @vigobronx
+
+current_branch=""
+function in_hg_repo {
+    current_branch=$(hg branch 2> /dev/null)
+    if [[ $current_branch ]]; then
+        return 0
+    fi
+    return 1
+}
+
+
+function cwd_modified_files {
+    modified_files_count=$(hg status | grep "^M" | wc -l | tr -d " ")
+    if [[ $modified_files_count > 0 ]]; then
+        echo -e " (\xE2\x9C\x8D ${modified_files_count})"
+    fi
+}
+
+function cwd_untracked {
+    files_not_under_revision_control_count=$(hg status | grep "^?" | wc -l | tr -d " ")
+    if [[ $files_not_under_revision_control_count > 0 ]]; then
+        echo -e " (\xE2\x98\x90 ${files_not_under_revision_control_count})"
+    fi
+}
+
+function cwd_deleted_files {
+    deleted_files_count=$(hg status | grep "^R" | wc -l | tr -d " ")
+    if [[ $deleted_files_count > 0 ]]; then
+        echo -e " (\xE2\x8C\xAB ${deleted_files_count})"
+    fi
+}
+
+if [[ $(which hg) ]]; then
+    if in_hg_repo; then
+        commit_id=$(hg identify -ni 2> /dev/null | tr " " ":")
+        any_modified=$(cwd_modified_files)
+        any_untracked=$(cwd_untracked)
+        any_deleted=$(cwd_deleted_files)
+        
+        branch_color="$(tput setaf 2)${current_branch}$(tput sgr0)"
+        at_color="$(tput setaf 7)@$(tput sgr0)"
+        
+        echo "[${branch_color}${at_color}${commit_id}${any_modified}${any_untracked}${any_deleted}]"
+    fi
+fi

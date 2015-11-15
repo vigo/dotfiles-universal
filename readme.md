@@ -65,6 +65,7 @@ env, aliases etc...
 **2015-11-15**
 
 * updated: GIT prompt now supports recursive modified files count + deleted files.
+* new: HG (mercurial) prompt added. Kind of experimental! please report bugs!
 
 **2015-11-11**
 

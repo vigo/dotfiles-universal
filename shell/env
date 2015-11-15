@@ -18,6 +18,7 @@ export HISTTIMEFORMAT="[$(tput setaf 2)%F %T$(tput sgr0)]: "
 
 # Prompts
 PROMPT_GIT=$DOTFILES_PATH/prompts/git_prompt
+PROMPT_HG=$DOTFILES_PATH/prompts/hg_prompt
 PROMPT_RBENV=$DOTFILES_PATH/prompts/rbenv_prompt
 PROMPT_VIRTUALENV=$DOTFILES_PATH/prompts/virtualenv
 
@@ -33,7 +34,7 @@ ps_cwd="$(tput setaf 7)\w$(tput sgr0)"
 
 prompt_line_1="$(tput setaf 8)\$(\$PROMPT_FREE_MEMORY)\$(\$PROMPT_BATTERY_STATUS)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
 prompt_line_2="$ps_username at $ps_hostname in $ps_cwd"
-prompt_line_3="$(tput blink 3)\$(\$PROMPT_MYSQL_STATUS)$(tput sgr0)\$(\$PROMPT_RBENV)\$(\$PROMPT_VIRTUALENV)\$(\$PROMPT_GIT)"
+prompt_line_3="$(tput blink 3)\$(\$PROMPT_MYSQL_STATUS)$(tput sgr0)\$(\$PROMPT_RBENV)\$(\$PROMPT_VIRTUALENV)\$(\$PROMPT_GIT)\$(\$PROMPT_HG)"
 prompt_line_4="$ "
 
 prompt_line_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
