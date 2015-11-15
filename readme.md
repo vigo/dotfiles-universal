@@ -62,6 +62,10 @@ env, aliases etc...
 
 ## History
 
+**2015-11-15**
+
+* updated: GIT prompt now supports recursive modified files count + deleted files.
+
 **2015-11-11**
 
 * `lock_screen` alias for OSX Users. Locks OSX via command line!

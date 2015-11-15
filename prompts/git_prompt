@@ -4,7 +4,7 @@
 # feel free to add/change or implement more kool features
 # @vigobronx
 
-git_repo_path=`git rev-parse --git-dir 2>/dev/null`
+git_repo_path=$(git rev-parse --git-dir 2>/dev/null)
 
 function in_git_repo {
     if [[ ! -z $git_repo_path && $git_repo_path != "~" && $git_repo_path != "." && $git_repo_path != $HOME/.git ]]; then
@@ -14,9 +14,9 @@ function in_git_repo {
 }
 
 function git_parse_branch {
-    branch=`git rev-parse --abbrev-ref HEAD 2>/dev/null`
+    branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [[ $branch == "HEAD" ]]; then
-        tag=`git describe --tag 2>/dev/null`
+        tag=$(git describe --tag 2>/dev/null)
         if [[ -z $tag ]]; then
             echo "no branch"
         else
@@ -37,18 +37,24 @@ function any_rebasing {
     fi
 }
 
-function cwd_dirty {
-    modified_files=`git ls-files -m 2>/dev/null`
-    modified_files_count=`echo $modified_files | awk '{print NF}'`
+function cwd_modified_files {
+    modified_files_count=$(git st | grep modified | wc -l | tr -d " ")
     if [[ $modified_files_count > 0 ]]; then
-        echo -e " (\xE2\x9c\x97 ${modified_files_count})"
+        echo -e " (\xE2\x9C\x8D ${modified_files_count})"
     fi
 }
 
 function cwd_untracked {
-    files_not_under_revision_control_count=`git status -s 2>/dev/null | grep '??' | wc -l | tr -d " "`
+    files_not_under_revision_control_count=$(git status -s 2>/dev/null | grep '??' | wc -l | tr -d " ")
     if [[ $files_not_under_revision_control_count > 0 ]]; then
         echo -e " (\xE2\x98\x90 ${files_not_under_revision_control_count})"
+    fi
+}
+
+function cwd_deleted_files {
+    deleted_files_count=$(git st | grep deleted | wc -l | tr -d " ")
+    if [[ $deleted_files_count > 0 ]]; then
+        echo -e " (\xE2\x8C\xAB ${deleted_files_count})"
     fi
 }
 
@@ -69,19 +75,20 @@ function commit_position {
     fi
 }
 
-if [[ `which git` ]]; then
+if [[ $(which git) ]]; then
     if in_git_repo; then
         branch=$(git_parse_branch)
-        commit_id=`git rev-parse --short HEAD 2>/dev/null`
+        commit_id=$(git rev-parse --short HEAD 2>/dev/null)
         rebasing=$(any_rebasing)
-        any_modified=$(cwd_dirty)
+        any_modified=$(cwd_modified_files)
         any_untracked=$(cwd_untracked)
+        any_deleted=$(cwd_deleted_files)
         ahead_behind=$(commit_position)
         
         branch_color="$(tput setaf 2)${branch}$(tput sgr0)"
         at_color="$(tput setaf 7)@$(tput sgr0)"
         
-        echo "[${branch_color}${at_color}${commit_id}${rebasing}${any_modified}${any_untracked}${ahead_behind}]"
+        echo "[${branch_color}${at_color}${commit_id}${rebasing}${any_modified}${any_untracked}${any_deleted}${ahead_behind}]"
     fi
 fi
 
