@@ -38,7 +38,7 @@ function any_rebasing {
 }
 
 function cwd_modified_files {
-    modified_files_count=$(git st | grep modified | wc -l | tr -d " ")
+    modified_files_count=$(git status | grep modified | wc -l | tr -d " ")
     if [[ $modified_files_count > 0 ]]; then
         echo -e " (\xE2\x9C\x8D ${modified_files_count})"
     fi
@@ -52,7 +52,7 @@ function cwd_untracked {
 }
 
 function cwd_deleted_files {
-    deleted_files_count=$(git st | grep deleted | wc -l | tr -d " ")
+    deleted_files_count=$(git status | grep deleted | wc -l | tr -d " ")
     if [[ $deleted_files_count > 0 ]]; then
         echo -e " (\xE2\x8C\xAB ${deleted_files_count})"
     fi
