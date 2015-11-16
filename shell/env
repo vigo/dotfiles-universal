@@ -40,7 +40,7 @@ prompt_line_4="$ "
 prompt_line_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
 # export PS1="$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
     export PS1="$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
 else
     export PS1="$prompt_line_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"

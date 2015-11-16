@@ -22,8 +22,8 @@ fi
 
 # Are we on Mac ?
 # ----------------------------------------------------------------------------
-if [[ `uname` == "Darwin" ]]; then
-    # sw_vers -productVersion => 10.10
+if [[ $(uname) == "Darwin" ]]; then
+    export MACOSX_VERSION=$(sw_vers -productVersion)
     source $DOTFILES_PATH/shell/mac_specific
 fi
 # ----------------------------------------------------------------------------
@@ -32,7 +32,7 @@ fi
 # Are we on Ubuntu
 # ----------------------------------------------------------------------------
 if [[ -f /usr/bin/lsb_release ]]; then
-    if [[ `lsb_release -i | awk '{print $3}'` == "Ubuntu" ]]; then
+    if [[ $(lsb_release -i | awk '{print $3}') == "Ubuntu" ]]; then
         source $DOTFILES_PATH/shell/ubuntu_specific
     fi
 fi
@@ -41,7 +41,7 @@ fi
 
 # Are we on Gentoo
 # ----------------------------------------------------------------------------
-if [[ `uname -r | awk -F - '{print $2}'` == "gentoo" ]]; then
+if [[ $(uname -r | awk -F - '{print $2}') == "gentoo" ]]; then
     export WE_ARE_ON_GENTOO="YES"
     source $DOTFILES_PATH/shell/gentoo_specific
 fi
@@ -59,10 +59,8 @@ fi
 
 # Do we have VirtualEnv Wrapper...
 # ----------------------------------------------------------------------------
-if [[ -z "$WE_ARE_ON_GENTOO" ]]; then
-    if [[ `which virtualenvwrapper.sh` ]]; then
-        source `which virtualenvwrapper.sh`
-    fi
+if [[ $(command -v virtualenvwrapper.sh) ]]; then
+    source $(command -v virtualenvwrapper.sh)
 fi
 # ----------------------------------------------------------------------------
 
@@ -76,8 +74,8 @@ for completion_file in $DOTFILES_PATH/completions/*; do
 done
 
 # Do we have pip?
-if [[ `which pip` ]]; then
-    eval "`pip completion --bash`"
+if [[ $(command -v pip) ]]; then
+    eval "$(pip completion --bash)"
 fi
 # ----------------------------------------------------------------------------
 

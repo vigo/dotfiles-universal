@@ -35,7 +35,7 @@ function cwd_deleted_files {
     fi
 }
 
-if [[ $(which hg) ]]; then
+if [[ $(command -v hg) ]]; then
     if in_hg_repo; then
         commit_id=$(hg identify -ni 2> /dev/null | tr " " ":")
         any_modified=$(cwd_modified_files)

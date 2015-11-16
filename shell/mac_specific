@@ -1,6 +1,6 @@
 # Check Homebrew?
 # ----------------------------------------------------------------------------
-if [[ `which brew` ]]; then
+if [[ $(command -v brew) ]]; then
     # Load bash_completion if exists...
     if [ -f $(brew --prefix)/etc/bash_completion ]; then
         source $(brew --prefix)/etc/bash_completion
@@ -20,7 +20,7 @@ fi
 
 # TextMate ?
 # ----------------------------------------------------------------------------
-if [[ `which mate` ]]; then
+if [[ $(command -v mate) ]]; then
     # export SVN_EDITOR="mate -w"
     # export EDITOR="mate -w"
     alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
@@ -31,7 +31,7 @@ fi
 # Mac Specific aliases
 # ----------------------------------------------------------------------------
 # coreutils via Homebrew
-if [[ `which gls` ]]; then
+if [[ $(command -v gls) ]]; then
     alias ls="gls -h --color --group-directories-first"
 fi
 

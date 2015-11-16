@@ -62,6 +62,11 @@ env, aliases etc...
 
 ## History
 
+**2015-11-16**
+
+* updated: all shell executions changed to $(...) instead of `...`
+* fixed: `command -v` instead of `which`
+
 **2015-11-15**
 
 * updated: GIT prompt now supports recursive modified files count + deleted files.

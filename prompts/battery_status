@@ -6,7 +6,7 @@
 
 # emoji battery: \xF0\x9F\x94\x8B
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
     power_data=$(pmset -g batt)
     result=""
     if [[ ! $power_data == *"AC Power"* ]]; then

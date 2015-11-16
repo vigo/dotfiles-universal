@@ -1,4 +1,4 @@
-if [[ `uname` == "Linux" ]]; then
+if [[ $(uname) == "Linux" ]]; then
     alias ls='ls -h --color --group-directories-first'
 fi
 

@@ -5,7 +5,7 @@
 # @vigobronx
 
 
-if [[ `uname` == "Darwin" ]]; then
+if [[ $(uname) == "Darwin" ]]; then
     installed_memory=$(sysctl -n hw.memsize)
     installed_memory_in_gb=$(bc <<< "scale=2; $installed_memory/1024/1024/1000")
     page_types=("wired down" "active" "inactive")
