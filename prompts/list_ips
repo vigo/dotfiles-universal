@@ -4,35 +4,38 @@
 # feel free to add/change or implement more kool features
 # @vigobronx
 
-output=()
-case $(uname) in
-    "Darwin" )
-        interface_list=$(ifconfig -lu)
-        match_pattern="inet [0-9.]\+"
-        delimeter=" "
-    ;;
-    "Linux" )
-        lines=$(ifconfig -s | wc -l)
-        interface_list=$(ifconfig -s | tail -n $(( $lines-1 )) | cut -f1 -d' ' | xargs)
-        match_pattern="inet addr:[0-9.]\+"
-        delimeter=":"
-        if [[ $WE_ARE_ON_GENTOO ]]; then
+if [[ $(command -v ifconfig) ]]; then
+    output=()
+    case $(uname) in
+        "Darwin" )
+            interface_list=$(ifconfig -lu)
             match_pattern="inet [0-9.]\+"
             delimeter=" "
+        ;;
+        "Linux" )
+            lines=$(ifconfig -s | wc -l)
+            interface_list=$(ifconfig -s | tail -n $(( $lines-1 )) | cut -f1 -d' ' | xargs)
+            match_pattern="inet addr:[0-9.]\+"
+            delimeter=":"
+            if [[ $WE_ARE_ON_GENTOO ]]; then
+                match_pattern="inet [0-9.]\+"
+                delimeter=" "
+            fi
+        ;;
+    esac
+
+    for iface in $interface_list; do
+        ip_address=$(ifconfig $iface | grep --colour=never -oe "$match_pattern" | cut -f2 -d"$delimeter")
+        if [[ $ip_address && $ip_address != "127.0.0.1" ]]; then
+            iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
+            output+="${iface_and_ip}"
         fi
-    ;;
-esac
+    done
 
-for iface in $interface_list; do
-    ip_address=$(ifconfig $iface | grep --colour=never -oe "$match_pattern" | cut -f2 -d"$delimeter")
-    if [[ $ip_address && $ip_address != "127.0.0.1" ]]; then
-        iface_and_ip=$(printf ",%s:%s" "${iface}" "${ip_address}")
-        output+="${iface_and_ip}"
+    if [[ $output ]]; then
+        printf "[%s]" "${output:1}"
+    else
+        printf "[\xE2\x8C\x81]"
     fi
-done
-
-if [[ $output ]]; then
-    printf "[%s]" "${output:1}"
-else
-    printf "[\xE2\x8C\x81]"
 fi
+
