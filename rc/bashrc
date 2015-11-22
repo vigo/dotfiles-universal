@@ -7,19 +7,6 @@ source $DOTFILES_PATH/shell/env
 source $DOTFILES_PATH/shell/alias
 source $DOTFILES_PATH/shell/ls_colors
 
-# Load private files
-# ----------------------------------------------------------------------------
-# Loads every file under private/ folder!
-if [[ -d $DOTFILES_PATH/private ]]; then
-    if [ "$(ls -A $DOTFILES_PATH/private)" ]; then
-        for file in $DOTFILES_PATH/private/*; do
-            source $file
-        done
-    fi
-fi
-# ----------------------------------------------------------------------------
-
-
 # Are we on Mac ?
 # ----------------------------------------------------------------------------
 if [[ $(uname) == "Darwin" ]]; then
@@ -81,3 +68,17 @@ fi
 
 # Load Functions
 source $DOTFILES_PATH/shell/functions
+
+# Load private files
+# ----------------------------------------------------------------------------
+# Loads every file under private/ folder!
+if [[ -d $DOTFILES_PATH/private ]]; then
+    if [ "$(ls -A $DOTFILES_PATH/private)" ]; then
+        for file in $DOTFILES_PATH/private/*; do
+            source $file
+        done
+    fi
+fi
+# ----------------------------------------------------------------------------
+
+
