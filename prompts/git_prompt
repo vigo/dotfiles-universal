@@ -13,6 +13,7 @@ function in_git_repo {
     return 1
 }
 
+
 function git_parse_branch {
     branch=$(git rev-parse --abbrev-ref HEAD 2>/dev/null)
     if [[ $branch == "HEAD" ]]; then
@@ -27,6 +28,7 @@ function git_parse_branch {
     fi
 }
 
+
 function any_rebasing {
     if [[ -f $git_repo_path/BISECT_LOG ]]; then
         echo "+bisect"
@@ -37,26 +39,6 @@ function any_rebasing {
     fi
 }
 
-function cwd_modified_files {
-    modified_files_count=$(git status | grep modified | wc -l | tr -d " ")
-    if [[ $modified_files_count > 0 ]]; then
-        echo -e " (\xE2\x9C\x8D ${modified_files_count})"
-    fi
-}
-
-function cwd_untracked {
-    files_not_under_revision_control_count=$(git status -s 2>/dev/null | grep '??' | wc -l | tr -d " ")
-    if [[ $files_not_under_revision_control_count > 0 ]]; then
-        echo -e " (\xE2\x98\x90 ${files_not_under_revision_control_count})"
-    fi
-}
-
-function cwd_deleted_files {
-    deleted_files_count=$(git status | grep deleted | wc -l | tr -d " ")
-    if [[ $deleted_files_count > 0 ]]; then
-        echo -e " (\xE2\x8C\xAB ${deleted_files_count})"
-    fi
-}
 
 function commit_position {
     branch=$(git_parse_branch)
@@ -75,20 +57,39 @@ function commit_position {
     fi
 }
 
+
+typeset -a DIRTY_TABLE
+DIRTY_TABLE=(
+    "T"    "\xE2\x9A\x91"  # typechange
+    "??"   "\xE2\x98\x90"  # untracked
+    "R"    "\xE2\x9C\x8E"  # renamed
+    "D"    "\xE2\x8C\xAB"  # deleted
+    "M"    "\xE2\x9C\x8D"  # modified
+)
+DIRTY_TABLE_COUNT=${#DIRTY_TABLE[*]}
+function cwd_anything_changed {
+    for ((i=0; i<=$((($DIRTY_TABLE_COUNT/2)-1)); i++)); do
+        grep_text="${DIRTY_TABLE[(0+($i*2))]}"
+        icon="${DIRTY_TABLE[(1+($i*2))]}"
+        cf_count=$(git status -s 2>/dev/null | grep "${grep_text}" | wc -l | tr -d " ")
+        if [[ $cf_count > 0 ]]; then
+            printf " (${icon} ${cf_count})"
+        fi
+    done
+}
+
+
 if [[ $(command -v git) ]]; then
     if in_git_repo; then
         branch=$(git_parse_branch)
         commit_id=$(git rev-parse --short HEAD 2>/dev/null)
         rebasing=$(any_rebasing)
-        any_modified=$(cwd_modified_files)
-        any_untracked=$(cwd_untracked)
-        any_deleted=$(cwd_deleted_files)
+        anything_changed=$(cwd_anything_changed)
         ahead_behind=$(commit_position)
-        
         branch_color="$(tput setaf 2)${branch}$(tput sgr0)"
         at_color="$(tput setaf 7)@$(tput sgr0)"
         
-        echo "[${branch_color}${at_color}${commit_id}${rebasing}${any_modified}${any_untracked}${any_deleted}${ahead_behind}]"
+        echo "[${branch_color}${at_color}${commit_id}${rebasing}${anything_changed}${ahead_behind}]"
     fi
 fi
 
