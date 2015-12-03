@@ -29,6 +29,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
     ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
     ln -s $HOME/Dotfiles/rc/nano ~/.nanorc # if you’ve installed nano ? v2.4.2
+    ln -s $HOME/Dotfiles/rc/gemrc ~/.gemrc
 
 ### OSX Special
 
@@ -61,6 +62,10 @@ env, aliases etc...
 ![Terminal Screen](http://i.imgur.com/kXegjAf.png)
 
 ## History
+
+**2015-12-03**
+
+* `gemrc` added.
 
 **2015-11-16**
 
