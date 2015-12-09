@@ -63,6 +63,11 @@ env, aliases etc...
 
 ## History
 
+**2015-12-09**
+
+* changed: `mysql_prompt` changed to `database_prompt`, now supports **MySQL** and
+**PostgreSQL**
+
 **2015-12-03**
 
 * `gemrc` added.
