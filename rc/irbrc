@@ -8,3 +8,18 @@ begin
   Rails.application.eager_load! if Rails
 rescue
 end
+
+begin
+  require 'bond'
+  Bond.start
+rescue
+  warn "gem install bond"
+end
+
+begin
+  require 'wirble'
+  Wirble.init
+  Wirble.colorize
+rescue
+  warn "gem install wirble"
+end
