@@ -60,11 +60,11 @@ function commit_position {
 
 typeset -a DIRTY_TABLE
 DIRTY_TABLE=(
-    "T"    "\xE2\x9A\x91"  # typechange
+    "^ T"    "\xE2\x9A\x91"  # typechange
     "??"   "\xE2\x98\x90"  # untracked
-    "R"    "\xE2\x9C\x8E"  # renamed
-    "D"    "\xE2\x8C\xAB"  # deleted
-    "M"    "\xE2\x9C\x8D"  # modified
+    "^ R"    "\xE2\x9C\x8E"  # renamed
+    "^ D"    "\xE2\x8C\xAB"  # deleted
+    "^ M"    "\xE2\x9C\x8D"  # modified
 )
 DIRTY_TABLE_COUNT=${#DIRTY_TABLE[*]}
 function cwd_anything_changed {
