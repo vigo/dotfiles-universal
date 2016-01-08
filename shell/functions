@@ -71,6 +71,11 @@ _server_rb()
 complete -F _server_rb webserver_rb -o nospace
 # ----------------------------------------------------------------------------
 
+# enable bash completion for printenv
+# http://bashcookbook.com/bashinfo/source/bash-3.1/examples/complete/complete-examples
+# ----------------------------------------------------------------------------
+complete -e printenv
+# ----------------------------------------------------------------------------
 # ----------------------------------------------------------------------------
 # http://stackoverflow.com/a/18637593
 # first call: git-add-push-all, this will generate .all remote, then

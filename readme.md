@@ -63,6 +63,10 @@ env, aliases etc...
 
 ## History
 
+**2016-01-08**
+
+* added: Bash completion for `printenv`
+
 **2015-12-09**
 
 * changed: `mysql_prompt` changed to `database_prompt`, now supports **MySQL** and
