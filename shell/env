@@ -9,7 +9,7 @@ export MANPAGER="less -X";
 
 # History --------------------------------------------------------------------
 shopt -s histappend
-if [[ -z "$PROMPT_COMMAND" ]]; then
+if [ ! -z ${PROMPT_COMMAND+x} ]; then
     export PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
 fi
 export HISTIGNORE="ls:ll:cd:pwd"
