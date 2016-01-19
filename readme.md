@@ -25,6 +25,7 @@ You need to clone the repo:
     ln -s $HOME/Dotfiles/profile ~/.profile
     ln -s $HOME/Dotfiles/rc/bashrc ~/.bashrc
     ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
+    ln -s $HOME/Dotfiles/rc/screenrc ~/.screenrc
     ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
     ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
     ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
@@ -62,6 +63,10 @@ env, aliases etc...
 ![Terminal Screen](http://i.imgur.com/kXegjAf.png)
 
 ## History
+**2016-01-19**
+
+* added: `screenrc`
+* fixed: `$PROMPT_COMMAND` while using screen.
 
 **2016-01-08**
 
