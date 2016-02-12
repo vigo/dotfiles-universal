@@ -5,21 +5,21 @@ IRB.conf[:USE_READLINE] = true
 IRB.conf[:AUTO_INDENT] = true
 
 begin
-  Rails.application.eager_load! if Rails
-rescue
+  require 'wirble'
+  Wirble.init
+  Wirble.colorize
+rescue LoadError => e
+  warn "'gem install wirble' if you like to"
 end
 
 begin
   require 'bond'
   Bond.start
-rescue
-  warn "gem install bond"
+rescue LoadError => e
+  warn "'gem install bond' if you like to"
 end
 
 begin
-  require 'wirble'
-  Wirble.init
-  Wirble.colorize
+  Rails.application.eager_load! if Rails
 rescue
-  warn "gem install wirble"
 end
