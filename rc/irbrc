@@ -1,25 +1,30 @@
 require 'rubygems'
 require 'irb/completion'
 
-IRB.conf[:USE_READLINE] = true
-IRB.conf[:AUTO_INDENT] = true
+# tux fix
+if IRB.singleton_methods.include?(:conf)
+  IRB.conf[:USE_READLINE] = true
+  IRB.conf[:AUTO_INDENT] = true
 
-begin
-  require 'wirble'
-  Wirble.init
-  Wirble.colorize
-rescue LoadError => e
-  warn "'gem install wirble' if you like to"
+  begin
+    require 'wirble'
+    Wirble.init
+    Wirble.colorize
+  rescue LoadError => e
+    warn "'gem install wirble' if you like to"
+  end
+
+  begin
+    require 'bond'
+    Bond.start
+  rescue LoadError => e
+    warn "'gem install bond' if you like to"
+  end
+
+  begin
+    Rails.application.eager_load! if Rails
+  rescue
+  end
 end
 
-begin
-  require 'bond'
-  Bond.start
-rescue LoadError => e
-  warn "'gem install bond' if you like to"
-end
 
-begin
-  Rails.application.eager_load! if Rails
-rescue
-end
