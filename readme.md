@@ -1,15 +1,22 @@
 # Dotfiles Final Whistle
 
-Supports OS X and Ubuntu and Gentoo Linux.
+OS X, Ubuntu and Gentoo Linux competible dot-files / shell environment
+collection.
 
 ## Requirements
 
 ### OSX
 
-[Homebrew][01] would be kool!
+You need [Homebrew][brew] and `git`. Install [Homebrew][brew] first and then
+install `git` via `brew install git`.
 
-### Ubuntu:
+### Ubuntu
+
 `git` required. `sudo aptitude install git` can help you out...
+
+### Gentoo
+
+`git` required :) `emerge dev-vcs/git`
 
 ## Installation
 
@@ -54,15 +61,21 @@ env, aliases etc...
 
 ## Prompt Shell Features
 
-**OSX**: Free Memory, Battery status, IP List
+**OSX**: Free Memory, Battery status, IP List, Database (MySQL + PostgresQL) Status
 
-**BOTH**: Rbenv + Git prompt
+**BOTH**: Rbenv, Git / Mercurial prompt, Virtualenv
 
 ## Screenshots
 
 ![Terminal Screen](http://i.imgur.com/kXegjAf.png)
 
-## History
+## Change Log
+
+**2016-03-20**
+
+* fixed: `readme.md` file
+* added: MIT license
+
 **2016-01-19**
 
 * added: `screenrc`
@@ -158,5 +171,14 @@ env, aliases etc...
 
 * `ackrc` added
 
+## Contributer(s)
 
-[01]: http://brew.sh
+* [Uğur "vigo" Özyılmazel][01] - Creator, maintainer
+
+## License
+
+This project licensed under MIT.
+
+
+[01]: https://github.com/vigo
+[brew]: http://brew.sh
