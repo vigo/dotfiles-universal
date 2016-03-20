@@ -177,7 +177,7 @@ env, aliases etc...
 
 ## License
 
-This project licensed under MIT.
+This project is licensed under MIT.
 
 
 [01]: https://github.com/vigo
