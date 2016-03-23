@@ -62,7 +62,7 @@ done
 
 # Do we have pip?
 if [[ $(command -v pip) ]]; then
-    eval "$(pip completion --bash)"
+    eval "$(pip --disable-pip-version-check completion --bash)"
 fi
 # ----------------------------------------------------------------------------
 
