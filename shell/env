@@ -52,5 +52,5 @@ fi
 if [[ ${BASH_VERSINFO[0]} -gt 3 ]]; then
     shopt -s extglob
     shopt -s globstar
-    shopt -s direxpand
+    shopt -s dotglob
 fi
