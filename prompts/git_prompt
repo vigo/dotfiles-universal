@@ -58,24 +58,78 @@ function commit_position {
 }
 
 
-typeset -a DIRTY_TABLE
-DIRTY_TABLE=(
-    "^ T"    "\xE2\x9A\x91"  # typechange
-    "??"   "\xE2\x98\x90"  # untracked
-    "^ R"    "\xE2\x9C\x8E"  # renamed
-    "^ D"    "\xE2\x8C\xAB"  # deleted
-    "^ M"    "\xE2\x9C\x8D"  # modified
-)
-DIRTY_TABLE_COUNT=${#DIRTY_TABLE[*]}
 function cwd_anything_changed {
-    for ((i=0; i<=$((($DIRTY_TABLE_COUNT/2)-1)); i++)); do
-        grep_text="${DIRTY_TABLE[(0+($i*2))]}"
-        icon="${DIRTY_TABLE[(1+($i*2))]}"
-        cf_count=$(git status -s 2>/dev/null | grep "${grep_text}" | wc -l | tr -d " ")
-        if [[ $cf_count > 0 ]]; then
-            printf " (${icon} ${cf_count})"
+    repo_status=($(git status -s))
+    count_untracked=0
+    count_added=0
+    count_modified=0
+    count_renamed=0
+    count_deleted=0
+    count_typechanged=0
+    symbol_unctracked="\xE2\x98\x90"   # wire-frame square
+    symbol_added="\xE2\x98\xAF"        # ying-yang
+    symbol_modified="\xE2\x9C\x8D"     # hand is holding pencil
+    symbol_renamed="\xE2\x9C\x8E"      # pencil
+    symbol_deleted="\xE2\x8C\xAB"      # osx delete key
+    symbol_typechanged="\xE2\x9A\x91"  # white solid flag
+    symbol_overall="\xE2\xA6\xBF"      # ( . )
+    for ((i=0; i<=$(((${#repo_status[*]}/2)-1)); i++)); do
+        status_indicators="${repo_status[(0+($i*2))]}"
+        if [[ $status_indicators == "??" ]]; then
+            count_untracked=$(($count_untracked+1))
+        else
+            for ((j=0; j<${#status_indicators}; j++)); do
+                indicator="${status_indicators:$j:1}"
+                case $indicator in
+                    A)
+                        count_added=$(($count_added+1))
+                    ;;
+                    M)
+                        count_modified=$(($count_modified+1))
+                    ;;
+                    R)
+                        count_renamed=$(($count_renamed+1))
+                    ;;
+                    D)
+                        count_deleted=$(($count_deleted+1))
+                    ;;
+                    T)
+                        count_typechanged=$(($count_typechanged+1))
+                    ;;
+                esac
+            done
         fi
     done
+
+    count_overall=$((
+        $count_untracked +
+        $count_added + 
+        $count_modified + 
+        $count_renamed + 
+        $count_deleted + 
+        $count_typechanged))
+    
+    if [[ $count_untracked -gt 0 ]]; then
+        printf " (${symbol_unctracked} ${count_untracked})"
+    fi
+    if [[ $count_added -gt 0 ]]; then
+        printf " (${symbol_added} ${count_added})"
+    fi
+    if [[ $count_modified -gt 0 ]]; then
+        printf " (${symbol_modified} ${count_modified})"
+    fi
+    if [[ $count_renamed -gt 0 ]]; then
+        printf " (${symbol_renamed} ${count_renamed})"
+    fi
+    if [[ $count_deleted -gt 0 ]]; then
+        printf " (${symbol_deleted} ${count_deleted})"
+    fi
+    if [[ $count_typechanged -gt 0 ]]; then
+        printf " (${symbol_typechanged} ${count_typechanged})"
+    fi
+    if [[ $count_overall -gt 0 ]]; then
+        printf " (${symbol_overall} ${count_overall})"
+    fi
 }
 
 
