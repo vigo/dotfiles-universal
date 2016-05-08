@@ -71,6 +71,10 @@ env, aliases etc...
 
 ## Change Log
 
+**2016-05-08**
+
+* added: `APPLESCRIPT_VERSION` shell variable for mac os x config.
+
 **2016-03-20**
 
 * fixed: `readme.md` file

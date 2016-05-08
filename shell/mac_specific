@@ -45,3 +45,5 @@ alias ios_backup_enable="defaults delete com.apple.iTunes DeviceBackupsDisabled"
 alias ds_store_clear="find . -name '\.DS_Store' -print -delete"
 alias lock_screen="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
 # ----------------------------------------------------------------------------
+
+export APPLESCRIPT_VERSION=$(osascript -e 'set SystemInfo to system info' -e 'get AppleScript version of SystemInfo')
