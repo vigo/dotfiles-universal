@@ -10,7 +10,7 @@ source $DOTFILES_PATH/shell/ls_colors
 # Are we on Mac ?
 # ----------------------------------------------------------------------------
 if [[ $(uname) == "Darwin" ]]; then
-    export MACOSX_VERSION=$(sw_vers -productVersion)
+    export MACOSX_VERSION=`sw_vers -productVersion`
     source $DOTFILES_PATH/shell/mac_specific
 fi
 # ----------------------------------------------------------------------------
