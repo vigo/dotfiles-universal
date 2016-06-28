@@ -48,6 +48,15 @@ fi
 # ----------------------------------------------------------------------------
 if [[ $(command -v virtualenvwrapper.sh) ]]; then
     source $(command -v virtualenvwrapper.sh)
+    
+    function activate_venv()
+    {
+        if [ "${PWD}" != "${MYOLDPWD}" ]; then
+            MYOLDPWD="${PWD}"
+            test -e .venv && workon `cat .venv`
+        fi
+    }
+    export PROMPT_COMMAND="${PROMPT_COMMAND};activate_venv"
 fi
 # ----------------------------------------------------------------------------
 
