@@ -1,30 +1,58 @@
 require 'rubygems'
 require 'irb/completion'
 
-# tux fix
-if IRB.singleton_methods.include?(:conf)
-  IRB.conf[:USE_READLINE] = true
-  IRB.conf[:AUTO_INDENT] = true
-
+missing_gems = []
+need_gems = [
+  'colorized_string',
+  'wirble',
+  'bond',
+  'awesome_print',
+].each do |req_gem|
   begin
-    require 'wirble'
-    Wirble.init
-    Wirble.colorize
+    require "#{req_gem}"
   rescue LoadError => e
-    warn "'gem install wirble' if you like to"
-  end
-
-  begin
-    require 'bond'
-    Bond.start
-  rescue LoadError => e
-    warn "'gem install bond' if you like to"
-  end
-
-  begin
-    Rails.application.eager_load! if Rails
-  rescue
+    missing_gems << req_gem
   end
 end
 
+$irb_available_gems = need_gems - missing_gems
 
+if $irb_available_gems.include?('wirble')
+    Wirble.init
+    Wirble.colorize
+end
+Bond.start if $irb_available_gems.include?('bond')
+
+IRB.conf[:USE_READLINE] = true
+IRB.conf[:AUTO_INDENT]  = true
+IRB.conf[:SAVE_HISTORY] = 10000
+IRB.conf[:HISTORY_FILE] = "#{ENV['HOME']}/.irb_history"
+
+prompt_common = "%03n:%i"
+
+if $irb_available_gems.include?('colorized_string')
+  line_numbers = ColorizedString["%03n"].colorize(:yellow)
+  double_colon = ColorizedString[":"].colorize(:white)
+  indent_level = ColorizedString["%i"].colorize(:green)
+  prompt_common = "#{line_numbers}#{double_colon}#{indent_level}"
+end
+
+prompt_i = "#{prompt_common} > "
+prompt_s = "#{prompt_common} %l "
+prompt_c = "#{prompt_common} * "
+prompt_n = "#{prompt_common} >> "
+prompt_return = "=> %s\n"
+
+IRB.conf[:PROMPT][:CUSTOM] = {
+  :PROMPT_I => prompt_i,
+  :PROMPT_S => prompt_s,
+  :PROMPT_C => prompt_c,
+  :PROMPT_N => prompt_n,
+  :RETURN   => prompt_return,
+}
+IRB.conf[:PROMPT_MODE] = :CUSTOM
+
+begin
+  Rails.application.eager_load! if Rails
+rescue
+end
