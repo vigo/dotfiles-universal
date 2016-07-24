@@ -1,54 +1,37 @@
-#! bash
-# bash completion for the `bundle` command.
-#
-# Copyright (c) 2011-2013 Daniel Luz <dev at mernen dot com>.
-# Distributed under the MIT license.
-# http://mernen.com/projects/completion-ruby
-#
-# To use, source this file on bash:
-#   . completion-bundle
+_bundler_complete()
+{
+    if [[ ! `which bundle` ]]; then
+        return
+    fi
 
-__bundle() {
-  local cur=$2
-  local prev=$3
-  local bundle_command
-  __bundle_get_command
-  COMPREPLY=()
+    local cur prev commands
+    commands="help install update package exec config check list show outdated console open viz init gem platform"
+    cur="${COMP_WORDS[COMP_CWORD]}"
+    prev="${COMP_WORDS[COMP_CWORD-1]}"
+    
+    if [[ "${cur}" == -* ]]; then
+        local bundle_options="--no-color --verbose"
+        COMPREPLY=( $(compgen -W "${bundle_options}" -- ${cur}) )
+        return 0
+    fi
 
-  local options
-  if [[ $cur = -* ]]; then
-      options="--no-color --verbose"
-      if [[ -z $bundle_command ]]; then
-          options="$options --version --help"
-      fi
-  else
-      if [[ -z $bundle_command || $bundle_command = help ]]; then
-          options="help install update package exec config check list show
-                   console open viz init gem"
-      fi
-  fi
-  COMPREPLY=($(compgen -W "$options" -- "$cur"))
+    case "${prev}" in
+        "rake")
+            if [[ ! -e Rakefile ]]; then
+                return
+            fi
+            local rake_options=$(bundle exec rake -T | awk '{print $2}' | xargs)
+            COMPREPLY=( $(compgen -W "${rake_options}" -- ${cur}) )
+            return 0
+            ;;
+        "exec")
+            bin_folder=( $(find . -name 'bin' | xargs) )
+            executables=`command ls ${bin_folder} | xargs`
+            commands="${commands} rake ${executables}"
+            ;;
+    esac
+    
+    COMPREPLY=( $(compgen -W "${commands}" -- ${cur}) )
+    return 0
 }
-
-__bundle_get_command() {
-    local i
-    for ((i=1; i < $COMP_CWORD; ++i)); do
-        local arg=${COMP_WORDS[$i]}
-
-        case $arg in
-        [^-]*)
-            bundle_command=$arg
-            return;;
-        --version)
-            # command-killer
-            bundle_command=-
-            return;;
-        --help)
-            bundle_command=help
-            return;;
-        esac
-    done
-}
-
-
-complete -F __bundle -o bashdefault -o default bundle
+complete -F _bundler_complete bundle
