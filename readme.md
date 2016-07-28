@@ -22,22 +22,21 @@ install `git` via `brew install git`.
 
 You need to clone the repo:
 
-    cd $HOME
-    git clone https://github.com/vigo/dotfiles-universal.git Dotfiles
+    git clone https://github.com/vigo/dotfiles-universal.git $HOME/Dotfiles
     
     # backup existing settings
-    mv .bashrc bashrc_old
-    mv .profile profile_old
+    mv $HOME/.bashrc $HOME/bashrc_old
+    mv $HOME/.profile $HOME/profile_old
     
-    ln -s $HOME/Dotfiles/profile ~/.profile
-    ln -s $HOME/Dotfiles/rc/bashrc ~/.bashrc
-    ln -s $HOME/Dotfiles/rc/inputrc ~/.inputrc
+    ln -s $HOME/Dotfiles/profile $HOME/.profile
+    ln -s $HOME/Dotfiles/rc/bashrc $HOME/.bashrc
+    ln -s $HOME/Dotfiles/rc/inputrc $HOME/.inputrc
     ln -s $HOME/Dotfiles/rc/screenrc ~/.screenrc
-    ln -s $HOME/Dotfiles/rc/ackrc ~/.ackrc # if you’ve installed ack?
-    ln -s $HOME/Dotfiles/rc/irbrc ~/.irbrc # if you’ve installed irb?
-    ln -s $HOME/Dotfiles/rc/pryrc ~/.pryrc # if you’ve installed pry gem ?
-    ln -s $HOME/Dotfiles/rc/nano ~/.nanorc # if you’ve installed nano ? v2.4.2
-    ln -s $HOME/Dotfiles/rc/gemrc ~/.gemrc
+    ln -s $HOME/Dotfiles/rc/ackrc $HOME/.ackrc # if you’ve installed ack?
+    ln -s $HOME/Dotfiles/rc/irbrc $HOME/.irbrc # if you’ve installed irb?
+    ln -s $HOME/Dotfiles/rc/pryrc $HOME/.pryrc # if you’ve installed pry gem ?
+    ln -s $HOME/Dotfiles/rc/nano $HOME/.nanorc # if you’ve installed nano ? v2.4.2
+    ln -s $HOME/Dotfiles/rc/gemrc $HOME/.gemrc
 
 ### OSX Special
 
