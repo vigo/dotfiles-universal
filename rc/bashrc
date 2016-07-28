@@ -56,7 +56,12 @@ if [[ $(command -v virtualenvwrapper.sh) ]]; then
             test -e .venv && workon `cat .venv`
         fi
     }
-    export PROMPT_COMMAND="${PROMPT_COMMAND};activate_venv"
+    if [[ -z "${PROMPT_COMMAND}" ]]; then
+        export PROMPT_COMMAND="activate_venv"
+    else
+        export PROMPT_COMMAND="${PROMPT_COMMAND};activate_venv"
+    fi
+    
 fi
 # ----------------------------------------------------------------------------
 
