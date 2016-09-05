@@ -43,25 +43,20 @@ if [[ -d $HOME/.rbenv ]]; then
 fi
 # ----------------------------------------------------------------------------
 
-
-# Do we have VirtualEnv Wrapper...
+# Do we have pyenv ?
 # ----------------------------------------------------------------------------
-if [[ $(command -v virtualenvwrapper.sh) ]]; then
-    source $(command -v virtualenvwrapper.sh)
-    
-    function activate_venv()
-    {
-        if [ "${PWD}" != "${MYOLDPWD}" ]; then
-            MYOLDPWD="${PWD}"
-            test -e .venv && workon `cat .venv`
-        fi
-    }
-    if [[ -z "${PROMPT_COMMAND}" ]]; then
-        export PROMPT_COMMAND="activate_venv"
-    else
-        export PROMPT_COMMAND="${PROMPT_COMMAND};activate_venv"
+if [[ -d $HOME/.pyenv ]]; then
+    export PYENV_ROOT="${HOME}/.pyenv"
+    export PATH="${PYENV_ROOT}/bin:$PATH"
+    eval "$(pyenv init -)"
+
+    if [[ -d $HOME/.pyenv/plugins/pyenv-virtualenv ]]; then
+        eval "$(pyenv virtualenv-init -)"
     fi
-    
+    if [[ -d $HOME/.pyenv/plugins/pyenv-virtualenvwrapper ]]; then
+        export PYENV_VIRTUALENVWRAPPER_PREFER_PYVENV="true"
+        pyenv virtualenvwrapper
+    fi
 fi
 # ----------------------------------------------------------------------------
 

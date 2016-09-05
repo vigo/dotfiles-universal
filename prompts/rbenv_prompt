@@ -3,6 +3,6 @@
 if [[ $(command -v rbenv) ]]; then
     rbenv_version=$(rbenv version-name)
     if [[ $rbenv_version != "system" && ! -z $rbenv_version ]]; then
-        echo "[${rbenv_version}]"
+        echo "[◆${rbenv_version}]"
     fi
 fi

@@ -1,5 +1,0 @@
-if [[ $VIRTUAL_ENV ]]; then
-    python_version=$(python --version 2>&1)
-    django_version=$(python -c $'try:\n    import django;\n    print(", Django {0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
-    echo "[${python_version}${django_version}]"
-fi

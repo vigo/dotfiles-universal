@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+if [[ $(command -v pyenv) ]]; then
+    pyenv_version=$(pyenv version-name)
+    if [[ $pyenv_version != "system" && ! -z $pyenv_version ]]; then
+        out="¶${pyenv_version}"
+        django_version=$(python -c $'try:\n    import django;\n    print("❡{0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
+        if [[ $django_version ]]; then
+            out="${out}|${django_version}"
+        fi
+        echo "[${out}]"
+    fi
+fi

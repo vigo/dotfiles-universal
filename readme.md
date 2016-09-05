@@ -66,9 +66,15 @@ env, aliases etc...
 
 ## Screenshots
 
-![Terminal Screen](http://i.imgur.com/kXegjAf.png)
+![Terminal Screen](screenshot.png)
 
 ## Change Log
+
+**2016-09-05**
+
+* big change: Now using `pyenv` for python version management. You need to
+install it! Recommended pyenv plugins: `pyenv-pip-rehash`, `pyenv-virtualenv`,
+`pyenv-virtualenvwrapper`
 
 **2016-05-08**
 
