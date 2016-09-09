@@ -4,7 +4,9 @@
 # search in history while writing with up/down
 "\e[B": history-search-forward
 "\e[A": history-search-backward
-
+# "\e[3;3~": kill-word + bunun yerine esc+d yap
+# meta key esc...
+# bind -l
 "\e[Z": menu-complete            # shift + tab
  
 $if Bash

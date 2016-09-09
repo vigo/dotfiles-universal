@@ -70,6 +70,10 @@ env, aliases etc...
 
 ## Change Log
 
+**2016-09-09**
+
+* `autoenv` support added
+
 **2016-09-05**
 
 * big change: Now using `pyenv` for python version management. You need to
