@@ -63,7 +63,7 @@ fi
 # Do we have autoenv ?
 # https://github.com/kennethreitz/autoenv
 # ----------------------------------------------------------------------------
-if [[ $(brew --prefix autoenv) ]]; then
+if [[ -d $(brew --prefix autoenv) ]]; then
     source $(brew --prefix autoenv)/activate.sh
 fi
 # ----------------------------------------------------------------------------
