@@ -136,12 +136,12 @@ function cwd_anything_changed {
 if [[ $(command -v git) ]]; then
     if in_git_repo; then
         branch=$(git_parse_branch)
-        commit_id=$(git rev-parse --short HEAD 2>/dev/null)
+        commit_id=$(git rev-parse --short HEAD 2>/dev/null || echo 'no-commit-id')
         rebasing=$(any_rebasing)
         anything_changed=$(cwd_anything_changed)
         ahead_behind=$(commit_position)
         branch_color="$(tput setaf 2)${branch}$(tput sgr0)"
-        at_color="$(tput setaf 7)@$(tput sgr0)"
+        at_color=" $(tput setaf 7)@$(tput sgr0) "
         
         echo "[${branch_color}${at_color}${commit_id}${rebasing}${anything_changed}${ahead_behind}]"
     fi
