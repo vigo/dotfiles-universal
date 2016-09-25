@@ -70,6 +70,11 @@ env, aliases etc...
 
 ## Change Log
 
+**2016-09-25**
+
+* Added `virtualenv_prompt` for `$PS1`
+* Added colors to `pyenv`, `rbenv` and `virtualenv` prompts.
+
 **2016-09-09**
 
 * `autoenv` support added

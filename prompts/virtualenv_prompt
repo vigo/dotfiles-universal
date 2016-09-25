@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ $VIRTUAL_ENV ]]; then
+    echo "[$(tput setaf 1)☂ $(basename ${VIRTUAL_ENV})$(tput sgr0)]"
+fi
