@@ -32,22 +32,28 @@ PROMPT_LIST_IPS=$DOTFILES_PATH/prompts/list_ips
 PROMPT_BATTERY_STATUS=$DOTFILES_PATH/prompts/battery_status
 PROMPT_DATABASE_STATUS=$DOTFILES_PATH/prompts/database_prompt
 
+
 ps_username="$(tput setaf 4)\u$(tput sgr0)"
 ps_hostname="$(tput setaf 1)\H$(tput sgr0)"
 ps_cwd="$(tput setaf 7)\w$(tput sgr0)"
 
+print_horizontal_line(){
+    cols=${COLUMNS:-$(tput cols)}
+    printf '%*s\n' "${cols}" '' | tr ' ' -
+}
+
+prompt_line_0="$(tput setaf 6)\$(print_horizontal_line)$(tput sgr0)"
 prompt_line_1="$(tput setaf 8)\$(\$PROMPT_FREE_MEMORY)\$(\$PROMPT_BATTERY_STATUS)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
 prompt_line_2="$ps_username at $ps_hostname in $ps_cwd"
 prompt_line_3="$(tput blink 3)\$(\$PROMPT_DATABASE_STATUS)$(tput sgr0)\$(\$PROMPT_VIRTUALENV)\$(\$PROMPT_RBENV)\$(\$PROMPT_PYENV)\$(\$PROMPT_GIT)\$(\$PROMPT_HG)"
 prompt_line_4="$ "
 
-prompt_line_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
-
-if [[ $(uname) == "Darwin" ]]; then
-    export PS1="$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
-else
-    export PS1="$prompt_line_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
+prompt_ps1="$prompt_line_0$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
+if [[ $(uname) != "Darwin" ]]; then
+    prompt_line_1_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
+    prompt_ps1="$prompt_line_1_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
 fi
+export PS1=$prompt_ps1
 
 # Bash v4
 if [[ ${BASH_VERSINFO[0]} -gt 3 ]]; then
