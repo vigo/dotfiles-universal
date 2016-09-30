@@ -51,7 +51,7 @@ prompt_line_4="$ "
 prompt_ps1="$prompt_line_0$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
 if [[ $(uname) != "Darwin" ]]; then
     prompt_line_1_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
-    prompt_ps1="$prompt_line_1_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
+    prompt_ps1="$prompt_line_0$prompt_line_1_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
 fi
 export PS1=$prompt_ps1
 
