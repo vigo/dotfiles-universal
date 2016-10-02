@@ -18,31 +18,24 @@ install `git` via `brew install git`.
 
 `git` required :) `emerge dev-vcs/git`
 
-## Installation
+## Installation and Removal
 
 You need to clone the repo:
 
     git clone https://github.com/vigo/dotfiles-universal.git $HOME/Dotfiles
-    
-    # backup existing settings
-    mv $HOME/.bashrc $HOME/bashrc_old
-    mv $HOME/.profile $HOME/profile_old
-    
-    ln -s $HOME/Dotfiles/profile $HOME/.profile
-    ln -s $HOME/Dotfiles/rc/bashrc $HOME/.bashrc
-    ln -s $HOME/Dotfiles/rc/inputrc $HOME/.inputrc
-    ln -s $HOME/Dotfiles/rc/screenrc ~/.screenrc
-    ln -s $HOME/Dotfiles/rc/ackrc $HOME/.ackrc # if you’ve installed ack?
-    ln -s $HOME/Dotfiles/rc/irbrc $HOME/.irbrc # if you’ve installed irb?
-    ln -s $HOME/Dotfiles/rc/pryrc $HOME/.pryrc # if you’ve installed pry gem ?
-    ln -s $HOME/Dotfiles/rc/nano $HOME/.nanorc # if you’ve installed nano ? v2.4.2
-    ln -s $HOME/Dotfiles/rc/gemrc $HOME/.gemrc
+    cd $HOME/Dotfiles
+    bash scripts/install.sh
+
+If you like to uninstall;
+
+    cd $HOME/Dotfiles
+    bash scripts/uninstall.sh
 
 ### OSX Special
 
 If you like to tweak Yosemite, try:
 
-    sh $HOME/tweaks_osx.sh
+    bash $HOME/Dotfiles/scripts/tweaks_osx.sh
 
 Need to restart shell / logout - login or `exec $SHELL`.
 
@@ -54,6 +47,7 @@ Need to restart shell / logout - login or `exec $SHELL`.
 * OSX specific aliases: `desktop_hide`, `desktop_show`, `shadow_screenshot_disable`,
 `shadow_screenshot_enable`, `ios_backup_disable`, `ios_backup_enable`,
 `ds_store_clear`, `reload_textmate`
+* try `alias` to see additions. `what_is_my_real_ip`, `what_is_my_public_ip`
 
 Put all of your **private** stuff under `Private/` folder! Custom functions,
 env, aliases etc...
