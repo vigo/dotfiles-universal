@@ -4,7 +4,6 @@ OS X, Ubuntu and Gentoo Linux competible dot-files / shell environment
 collection.
 
 ## Requirements
-
 ### OSX
 
 You need [Homebrew][brew] and `git`. Install [Homebrew][brew] first and then
@@ -25,6 +24,9 @@ You need to clone the repo:
     git clone https://github.com/vigo/dotfiles-universal.git $HOME/Dotfiles
     cd $HOME/Dotfiles
     bash scripts/install.sh
+
+`nanorc` is optional now. Please check `rc/nanorc.example` for more information.
+
 
 If you like to uninstall;
 
@@ -63,6 +65,11 @@ env, aliases etc...
 ![Terminal Screen](screenshot.png)
 
 ## Change Log
+
+**2016-10-02**
+
+* Added install and uninstall scripts.
+* Nano config is now optional.
 
 **2016-09-25**
 

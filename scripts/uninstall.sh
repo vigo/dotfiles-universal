@@ -30,6 +30,7 @@ unlink_dotfiles() {
             fi
         fi
     done
+    echo
     echo "Dotfiles unlinked successfully..."
     echo "If you want to remove ~/Dotfiles, do it your self..."
 }
