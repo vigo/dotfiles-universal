@@ -22,8 +22,7 @@ install `git` via `brew install git`.
 You need to clone the repo:
 
     git clone https://github.com/vigo/dotfiles-universal.git $HOME/Dotfiles
-    cd $HOME/Dotfiles
-    bash scripts/install.sh
+    bash $HOME/Dotfiles/scripts/install.sh
 
 `nanorc` is optional now. Please check `rc/nanorc.example` for more information.
 
