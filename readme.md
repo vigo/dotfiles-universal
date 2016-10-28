@@ -65,6 +65,10 @@ env, aliases etc...
 
 ## Change Log
 
+**2016-10-25**
+
+* Added: `dataurl` function. Creates base64 encoded image string. Try `dataurl my_image.png`
+
 **2016-10-02**
 
 * Added install and uninstall scripts.
