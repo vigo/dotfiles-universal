@@ -53,17 +53,40 @@ Need to restart shell / logout - login or `exec $SHELL`.
 Put all of your **private** stuff under `Private/` folder! Custom functions,
 env, aliases etc...
 
+## Functions and Aliases
+
+### Functions
+
+- `webserver` : SimpleHTTPServer.
+- `webserver_rb` : Ruby version of simple http server uses `httpd` of ruby!
+- `gz_analyse` : Shows not/gzipped size diffs
+- `dataurl` : Creates base64 encoded image!
+- `mkdir_cd`: Creates folder and cd’ies in to it!
+
+### Aliases
+
+- `ll`, `la`, `l` : Listing directory, you know the drill!
+- `grep`, `fgrep` : Incase sensitive and color enabled.
+- `less`, `more` : Enabled raw control characters.
+- `rm` : By default : `rm -i`
+- `what_is_my_public_ip`, `what_is_my_real_ip` : Use `what_is_my_public_ip` if `dig` installed.
+- `restart_bash` : Reload bash environment
+
 ## Prompt Shell Features
 
 **OSX**: Free Memory, Battery status, IP List, Database (MySQL + PostgresQL) Status
 
-**BOTH**: Rbenv, Git / Mercurial prompt, Virtualenv
+**BOTH**: Rbenv, Pyenv, Git / Mercurial prompt, Virtualenv
 
 ## Screenshots
 
 ![Terminal Screen](screenshot.png)
 
 ## Change Log
+
+**2016-10-29**
+
+* Added: `mkdir_cd` function. Creates directory and goes in to it!
 
 **2016-10-25**
 

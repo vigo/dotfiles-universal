@@ -90,15 +90,33 @@ complete -e printenv
 
 # ----------------------------------------------------------------------------
 function gz_analyse() {
-    echo "orig size (bytes): "
-    cat "$1" | wc -c
-    echo "gzipped size (bytes): "
-    gzip -c "$1" | wc -c
+    if [[ $1 ]]; then
+        echo "orig size (bytes): "
+        cat "$1" | wc -c
+        echo "gzipped size (bytes): "
+        gzip -c "$1" | wc -c
+    else
+        echo "usage: gz_analyse file"
+    fi
 }
 # ----------------------------------------------------------------------------
 
 # ----------------------------------------------------------------------------
 dataurl() {
-    echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
+    if [[ $1 ]]; then
+        echo "data:image/${1##*.};base64,$(openssl base64 -in "$1")" | tr -d '\n'
+    else
+        echo 'usage: dataurl image_file'
+    fi
+}
+# ----------------------------------------------------------------------------
+
+# ----------------------------------------------------------------------------
+mkdir_cd(){
+    if [[ $1 ]]; then
+        mkdir "$1" && cd "$1"
+    else
+        echo 'usage: mkdir_cd directory'
+    fi
 }
 # ----------------------------------------------------------------------------
