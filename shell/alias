@@ -1,11 +1,3 @@
-if [[ $(uname) == "Linux" ]]; then
-    alias ls='ls -h --color --group-directories-first'
-fi
-
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 alias grep="grep -i --color=auto"
 alias fgrep="fgrep -i -n -r --color=auto"
 alias less="less -r"

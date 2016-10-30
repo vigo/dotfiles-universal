@@ -18,3 +18,8 @@ if ! shopt -oq posix; then
         source /etc/bash_completion
     fi
 fi
+
+alias ls='ls -h --color --group-directories-first'
+alias ll='ls -alF'
+alias la='ls -A'
+alias l='ls -CF'

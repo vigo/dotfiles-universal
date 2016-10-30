@@ -27,21 +27,14 @@ fi
 # ----------------------------------------------------------------------------
 
 
-# TextMate ?
-# ----------------------------------------------------------------------------
-if [[ $(command -v mate) ]]; then
-    # export SVN_EDITOR="mate -w"
-    # export EDITOR="mate -w"
-    alias reload_textmate="osascript -e 'tell app \"TextMate\" to reload bundles'"
-fi
-# ----------------------------------------------------------------------------
-
-
 # Mac Specific aliases
 # ----------------------------------------------------------------------------
 # coreutils via Homebrew
 if [[ $(command -v gls) ]]; then
     alias ls="gls -h --color --group-directories-first"
+    alias ll='ls -alF'
+    alias la='ls -A'
+    alias l='ls -CF'
 fi
 
 # Show/Hide desktop from CMD
