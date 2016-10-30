@@ -3,7 +3,7 @@
 
 **2016-10-30**
 
-* Safe folder name for `mkdir_cd`. Allowed chars are: `space`, `A` to `Z` or `a` to `z`, numbers (0-9), `.`, `_` and `-`
+* Safe folder name for `mkdir_cd`. Allowed chars are: `space`, `A` to `Z` or `a` to `z`, numbers (0-9), `.`, `_`, `+` and `-`
 
 **2016-10-29**
 
