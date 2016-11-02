@@ -114,10 +114,11 @@ dataurl() {
 # ----------------------------------------------------------------------------
 mkdir_cd(){
     if [[ $1 ]]; then
-        safe_folder_name="${1//[^ A-Za-z0-9+._-]/-}"
-        mkdir "${safe_folder_name}" && cd "${safe_folder_name}"
+        mkdir -p "${1}" && cd "${1}"
     else
-        echo 'usage: mkdir_cd directory'
+        echo 'usage: mkdir_cd path/to/directory'
+        echo '       mkdir_cd "you folder name"'
+        echo '       mkdir_cd path/to/new/non-existing/dir'
     fi
 }
 # ----------------------------------------------------------------------------
