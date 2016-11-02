@@ -1,17 +1,20 @@
 #!/usr/bin/env bash
 
-out=" "
-if [[ $(command -v pyenv) ]]; then
-    pyenv_version=$(pyenv version-name)
-    if [[ $pyenv_version != "system" && ! -z $pyenv_version ]]; then
-        out="¶ ${pyenv_version}"
+if [[ $(command -v python) ]]; then
+    out=" "
+    if [[ $(command -v pyenv) ]]; then
+        pyenv_version=$(pyenv version-name)
+        if [[ $pyenv_version != "system" && ! -z $pyenv_version ]]; then
+            out="¶ ${pyenv_version}"
+        fi
+    else
+        python_version=`python --version 2>&1`
+        out="¶ ${python_version}"
     fi
-else
-    python_version=`python --version 2>&1`
-    out="¶ ${python_version}"
+    django_version=$(python -c $'try:\n    import django;\n    print("❡ {0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
+    if [[ $django_version ]]; then
+        out="${out} | ${django_version}"
+    fi
+    echo "[$(tput setaf 4)${out}$(tput sgr0)]"
 fi
-django_version=$(python -c $'try:\n    import django;\n    print("❡ {0}".format(django.get_version()));\nexcept ImportError:\n    pass;\n')
-if [[ $django_version ]]; then
-    out="${out} | ${django_version}"
-fi
-echo "[$(tput setaf 4)${out}$(tput sgr0)]"
+
