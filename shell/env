@@ -25,6 +25,7 @@ PROMPT_HG=$DOTFILES_PATH/prompts/hg_prompt
 PROMPT_RBENV=$DOTFILES_PATH/prompts/rbenv_prompt
 PROMPT_PYENV=$DOTFILES_PATH/prompts/pyenv_prompt
 PROMPT_VIRTUALENV=$DOTFILES_PATH/prompts/virtualenv_prompt
+PROMPT_SHELLNAME=$DOTFILES_PATH/prompts/bash_info_prompt
 
 # mac only
 PROMPT_FREE_MEMORY=$DOTFILES_PATH/prompts/free_memory
@@ -43,7 +44,7 @@ print_horizontal_line(){
 }
 
 prompt_line_0="$(tput setaf 6)\$(print_horizontal_line)$(tput sgr0)"
-prompt_line_1="$(tput setaf 8)\$(\$PROMPT_FREE_MEMORY)\$(\$PROMPT_BATTERY_STATUS)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
+prompt_line_1="$(tput setaf 8)\$(\$PROMPT_SHELLNAME)\$(\$PROMPT_FREE_MEMORY)\$(\$PROMPT_BATTERY_STATUS)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
 prompt_line_2="$ps_username at $ps_hostname in $ps_cwd"
 prompt_line_3="$(tput blink 3)\$(\$PROMPT_DATABASE_STATUS)$(tput sgr0)\$(\$PROMPT_VIRTUALENV)\$(\$PROMPT_RBENV)\$(\$PROMPT_PYENV)\$(\$PROMPT_GIT)\$(\$PROMPT_HG)"
 prompt_line_4="$ "

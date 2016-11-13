@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+
+if [[ $(basename $SHELL) == 'bash' ]]; then
+    echo "[bash:${BASH_VERSION}]"
+fi
