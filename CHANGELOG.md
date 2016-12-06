@@ -1,6 +1,10 @@
 # Dotfiles Final Whistle
 ## Change Log
 
+**2016-12-06**
+
+* Automatic virtual environment activation fixed and re-enables. Uses `.virtualenv` file...
+
 **2016-10-30**
 
 * Safe folder name for `mkdir_cd`. Allowed chars are: `space`, `A` to `Z` or `a` to `z`, numbers (0-9), `.`, `_`, `+` and `-`
