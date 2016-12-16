@@ -1,6 +1,10 @@
 # Dotfiles Final Whistle
 ## Change Log
 
+**2016-12-16**
+
+* Configurable `PS1` support added. Please check [README.md](README.md)
+
 **2016-12-06**
 
 * Automatic virtual environment activation fixed and re-enables. Uses `.virtualenv` file...

@@ -26,6 +26,47 @@ You need to clone the repo:
 
 `nanorc` is optional now. Please check `rc/nanorc.example` for more information.
 
+Dotfiles is shiped with configurable `PS1` feature. PS1 elements are:
+
+    ps1_Horizontal_Line
+    ps1_Shell_Name
+    ps1_Free_Memory
+    ps1_Battery_Status
+    ps1_IP_List
+    ps1_Username_and_Hostname
+    ps1_Database_Status
+    ps1_Virtualenv_Status
+    ps1_RBENV_Status
+    ps1_PYENV_Status
+    ps1_GIT_Status
+    ps1_Mercurial_Status
+
+There are two pre-defined configurations:
+
+        ps1_PREFS_Full
+        ps1_PREFS_Basic
+
+Default value for `PS1` is `ps1_PREFS_Basic`:
+
+```bash
+# you’ll see this:
+export PS1=$ps1_PREFS_Basic
+```
+
+You can override this via putting your own config under `Private/` folder as `ps1`:
+
+```bash
+# example custom PS1
+export PS1=$ps1_PREFS_Full
+
+# or
+export PS1="${ps1_Username_and_Hostname}\n$ "
+
+# or
+export PS1="$ps1_Username_and_Hostname
+$ps1_RBENV_Status$ps1_GIT_Status
+> "
+```
 
 If you like to uninstall;
 

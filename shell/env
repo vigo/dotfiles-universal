@@ -7,7 +7,7 @@ fi
 export LESS="-ir --prompt=?f%f %lb %L - %db/%D [%bb / %B bytes]"
 export MANPAGER="less -X";
 
-# History --------------------------------------------------------------------
+# History ----------------------------------------------------------------------
 shopt -s histappend
 if [ ! -z ${PROMPT_COMMAND+x} ]; then
     export PROMPT_COMMAND="history -a;${PROMPT_COMMAND}"
@@ -17,7 +17,7 @@ export HISTFILESIZE=30000
 export HISTSIZE=30000
 export HISTCONTROL=ignoredups:erasedups
 export HISTTIMEFORMAT="[$(tput setaf 2)%F %T$(tput sgr0)]: "
-# History --------------------------------------------------------------------
+# History ----------------------------------------------------------------------
 
 # Prompts
 PROMPT_GIT=$DOTFILES_PATH/prompts/git_prompt
@@ -43,22 +43,58 @@ print_horizontal_line(){
     printf '%*s\n' "${cols}" '' | tr ' ' -
 }
 
-prompt_line_0="$(tput setaf 6)\$(print_horizontal_line)$(tput sgr0)"
-prompt_line_1="$(tput setaf 8)\$(\$PROMPT_SHELLNAME)\$(\$PROMPT_FREE_MEMORY)\$(\$PROMPT_BATTERY_STATUS)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
-prompt_line_2="$ps_username at $ps_hostname in $ps_cwd"
-prompt_line_3="$(tput blink 3)\$(\$PROMPT_DATABASE_STATUS)$(tput sgr0)\$(\$PROMPT_VIRTUALENV)\$(\$PROMPT_RBENV)\$(\$PROMPT_PYENV)\$(\$PROMPT_GIT)\$(\$PROMPT_HG)"
-prompt_line_4="$ "
+# components
+# ------------------------------------------------------------------------------
+ps1_Horizontal_Line="$(tput setaf 6)\$(print_horizontal_line)$(tput sgr0)"
+ps1_Shell_Name="$(tput setaf 8)\$(\$PROMPT_SHELLNAME)$(tput sgr0)"
+ps1_Free_Memory="$(tput setaf 8)\$(\$PROMPT_FREE_MEMORY)$(tput sgr0)"
+ps1_Battery_Status="$(tput setaf 8)\$(\$PROMPT_BATTERY_STATUS)$(tput sgr0)"
+ps1_IP_List="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
+ps1_Username_and_Hostname="${ps_username} at ${ps_hostname} in ${ps_cwd}"
+ps1_Database_Status="$(tput setaf 3)\$(\$PROMPT_DATABASE_STATUS)$(tput sgr0)"
+ps1_Virtualenv_Status="\$(\$PROMPT_VIRTUALENV)"
+ps1_RBENV_Status="\$(\$PROMPT_RBENV)"
+ps1_PYENV_Status="\$(\$PROMPT_PYENV)"
+ps1_GIT_Status="\$(\$PROMPT_GIT)"
+ps1_Mercurial_Status="\$(\$PROMPT_HG)"
+# ------------------------------------------------------------------------------
 
-prompt_ps1="$prompt_line_0$prompt_line_1\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
+# prefs OS X
+# ------------------------------------------------------------------------------
+ps1_PREFS_Full="$ps1_Horizontal_Line
+$ps1_Shell_Name$ps1_Free_Memory$ps1_Battery_Status$ps1_IP_List
+$ps1_Username_and_Hostname
+$ps1_Database_Status$ps1_Virtualenv_Status$ps1_RBENV_Status$ps1_PYENV_Status$ps1_GIT_Status$ps1_Mercurial_Status
+$ "
+
+ps1_PREFS_Basic="$ps1_Free_Memory$ps1_Battery_Status
+$ps1_Username_and_Hostname
+$ps1_GIT_Status
+$ "
+# ------------------------------------------------------------------------------
+
+
+# prefs Linux
+# ------------------------------------------------------------------------------
 if [[ $(uname) != "Darwin" ]]; then
-    prompt_line_1_linux="$(tput setaf 8)\$(\$PROMPT_LIST_IPS)$(tput sgr0)"
-    prompt_ps1="$prompt_line_0$prompt_line_1_linux\n$prompt_line_2\n$prompt_line_3\n$prompt_line_4"
+    ps1_PREFS_Full="$ps1_Horizontal_Line
+$ps1_IP_List
+$ps1_Username_and_Hostname
+$ps1_Database_Status$ps1_Virtualenv_Status$ps1_RBENV_Status$ps1_PYENV_Status$ps1_GIT_Status$ps1_Mercurial_Status
+> "
+    ps1_PREFS_Basic="$ps1_Username_and_Hostname
+$ps1_GIT_Status
+> "
 fi
-export PS1=$prompt_ps1
+# ------------------------------------------------------------------------------
 
 # Bash v4
+# ------------------------------------------------------------------------------
 if [[ ${BASH_VERSINFO[0]} -gt 3 ]]; then
     shopt -s extglob
     shopt -s globstar
     shopt -s dotglob
 fi
+# ------------------------------------------------------------------------------
+export PS1=$ps1_PREFS_Basic
+# ------------------------------------------------------------------------------
