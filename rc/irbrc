@@ -2,6 +2,10 @@ require 'rubygems'
 require 'irb/completion'
 require 'irb/ext/save-history'
 
+# colorize
+# wirble
+# bond
+# awesome_print
 missing_gems = []
 need_gems = [
   'colorized_string',
@@ -57,3 +61,12 @@ begin
   Rails.application.eager_load! if Rails
 rescue
 end
+
+class Object
+  def own_methods(obj=self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
+  end
+end
+
+
+puts "missing requires: #{missing_gems}" if missing_gems.count > 0

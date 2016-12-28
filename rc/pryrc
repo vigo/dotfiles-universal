@@ -10,4 +10,12 @@ begin
   AwesomePrint.defaults={:theme=>:solorized}
   AwesomePrint.pry!
 rescue LoadError => err
+  puts 'need awesome_print!'
 end
+
+class Object
+  def own_methods(obj=self)
+    (obj.methods - obj.class.superclass.instance_methods).sort
+  end
+end
+
