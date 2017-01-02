@@ -27,6 +27,28 @@ fi
 # ----------------------------------------------------------------------------
 
 
+# activate virtualenv if exists
+# ----------------------------------------------------------------------------
+function activate_virtualenv(){
+    if [[ !$VIRTUAL_ENV ]]; then
+        if [ "${PWD}" != "${MYOLDPWD}" ]; then
+            MYOLDPWD="${PWD}"
+            test -e .virtualenv && 
+            source ~/.virtualenvs/$(cat .virtualenv)/bin/activate &&
+            echo 'virtual environment activated...'
+        fi
+    fi
+}
+if [[ -d $HOME/.virtualenvs ]]; then
+    if [[ -n "${PROMPT_COMMAND}" ]]; then
+        export PROMPT_COMMAND="${PROMPT_COMMAND};activate_virtualenv"
+    else
+        export PROMPT_COMMAND="activate_virtualenv"
+    fi
+fi
+# ----------------------------------------------------------------------------
+
+
 # Mac Specific aliases
 # ----------------------------------------------------------------------------
 # coreutils via Homebrew

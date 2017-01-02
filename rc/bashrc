@@ -60,23 +60,6 @@ if [[ -d $HOME/.pyenv ]]; then
 fi
 # ----------------------------------------------------------------------------
 
-# activate virtualenv if exists
-# ----------------------------------------------------------------------------
-function activate_virtualenv(){
-    if [[ !$VIRTUAL_ENV ]]; then
-        if [ "${PWD}" != "${MYOLDPWD}" ]; then
-            MYOLDPWD="${PWD}"
-            test -e .virtualenv && 
-            source ~/.virtualenvs/$(cat .virtualenv)/bin/activate &&
-            echo 'virtual environment activated...'
-        fi
-    fi
-}
-if [[ -d $HOME/.virtualenvs ]]; then
-    export PROMPT_COMMAND="${PROMPT_COMMAND};activate_virtualenv"
-fi
-# ----------------------------------------------------------------------------
-
 # Bash Completions
 # ----------------------------------------------------------------------------
 # Load completion files
