@@ -1,5 +1,10 @@
 # Dotfiles Final Whistle
 
+## UPDATE
+https://github.com/vigo/dotfiles-fever is the new rising ☆
+
+---
+
 OS X, Ubuntu and Gentoo Linux competible dot-files / shell environment
 collection.
 
